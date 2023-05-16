@@ -1,0 +1,31 @@
+import { IPageQuery, IPage } from "./Interface"
+import { CommonApi } from "./CommonApi"
+
+export default class TempApi extends CommonApi<ITempAdd, ITempRes, ITempQuery> {
+  constructor() {
+    super("/demo")
+  }
+
+  public async page(params?: any) {
+    return {
+      total: 2,
+      pages: 1,
+      list: [
+        { fieldName: "asds", fieldCode: "sfsd" },
+        { fieldName: "asds2112", fieldCode: "sfsasdd" }
+      ],
+    }
+    // return request<IPage<ITempRes>>({ url: `${this.urlPrefix}/page`, method: "get", params })
+  }
+}
+
+export interface ITempQuery extends IPageQuery {
+  name?: string
+  birthday?: string
+  sex?: number
+}
+export interface ITempAdd {}
+export interface ITempRes extends ITempAdd {
+  fieldName: string
+  fieldCode: string
+}

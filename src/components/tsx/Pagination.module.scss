@@ -1,0 +1,22 @@
+.body {
+	:global {
+		.el-pagination__sizes .el-input .el-input__inner {
+			font-size: 12px;
+		}
+	}
+}
+.tableBox {
+	.thead {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover i {
+			display: block;
+		}
+	}
+	i {
+		position: absolute;
+		right: 10px;
+		display: none;
+	}
+}

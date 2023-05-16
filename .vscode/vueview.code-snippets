@@ -1,0 +1,15 @@
+{
+	"Print to console": {
+		"prefix": "pageBase",
+		"body": [
+			"import { PageBase } from '@/components/PageBase';",
+
+			"\nexport default new (class ${1:ClassName} extends PageBase {",
+			"\n\tpublic render(): JSX.Element {",
+			"\t\treturn <div>${2:content}</div>",
+			"\t}",
+			"})();"
+		],
+		"description": "页面 标准模版"
+	}
+}

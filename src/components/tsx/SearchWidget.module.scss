@@ -1,0 +1,72 @@
+.searchBox {
+	margin-bottom: 20px;
+	padding: 20px 20px 10px;
+	background: #fff;
+	box-shadow: 0px 3px 10px 0px rgb(41 39 36 / 10%);
+	border-radius: 8px;
+
+	:global {
+		.el-form {
+			text-align: left;
+			font-size: var(--mainSize);
+		}
+
+		.el-form-item {
+			margin-bottom: 15px;
+			margin-left: 25px;
+		}
+
+		.el-form--inline .el-form-item {
+			margin-right: 0;
+		}
+
+		.el-form-item__content {
+			line-height: unset;
+			width: 220px;
+		}
+
+		.el-form-item__label {
+			color: rgba(33, 32, 44, 0.836);
+			line-height: 32px;
+			font-size: var(--mainSize);
+		}
+
+		.el-input__inner {
+			width: 100%;
+		}
+	}
+}
+
+.form {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.action {
+	display: flex !important;
+	align-items: flex-end;
+	margin-left: auto !important;
+	:global {
+		.el-form-item__content {
+			width: auto;
+		}
+	}
+}
+
+.breadcrumb {
+	margin-bottom: 12px;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	padding-bottom: 14px;
+}
+
+.tabBox {
+	:global {
+		.el-tabs__item {
+			font-size: var(--mainSize);
+		}
+	}
+}

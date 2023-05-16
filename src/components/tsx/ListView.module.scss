@@ -1,0 +1,20 @@
+.tableActBox {
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	.action {
+		display: flex;
+		align-items: center;
+	}
+}
+.upload {
+	margin: 0 10px;
+	display: inline-block;
+}
+.filterBox {
+	:global {
+		.el-dialog__body {
+			overflow: hidden;
+		}
+	}
+}

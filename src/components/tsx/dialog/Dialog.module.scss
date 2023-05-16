@@ -1,0 +1,323 @@
+.dialogBox {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	max-height: calc(100% - 80px);
+	:global {
+		.el-dialog__body {
+			flex: 1;
+			padding: 15px 30px;
+			overflow: auto;
+		}
+
+		.el-textarea.is-disabled .el-textarea__inner {
+			color: #2e2e2e;
+		}
+		.el-select {
+			width: 100%;
+		}
+	}
+}
+
+.drawerBox {
+	:global {
+		.el-drawer__body {
+			display: flex;
+			flex-direction: column;
+		}
+		.el-drawer__header {
+			margin-bottom: 0;
+		}
+
+		.el-form {
+			flex: 1;
+			overflow: auto;
+		}
+
+		.el-select {
+			width: 100%;
+		}
+	}
+	.action {
+		padding: 0;
+		padding-top: 15px;
+	}
+}
+
+.action {
+	padding: 15px;
+	border-top: 1px solid #eee;
+	text-align: right;
+}
+
+.setTimeBox {
+	:global {
+		.el-radio {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.drawerContent {
+	padding: 0 15px 15px;
+	flex: 1;
+	overflow: auto;
+
+	:global {
+		.mainBox {
+			min-height: auto;
+		}
+	}
+}
+
+.cardIdBox {
+	:global {
+		.el-form-item {
+			margin-bottom: 6px;
+		}
+	}
+}
+.carSelectBox {
+	overflow: hidden;
+	.list {
+		padding: 10px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		max-height: 400px;
+		overflow: auto;
+	}
+	.item {
+		padding: 15px 15px 18px;
+		border-radius: 4px;
+		box-shadow: 0 0 10px rgba(58, 88, 171, 0.2);
+	}
+	.vin {
+		font-size: var(--titleSize);
+	}
+	.info {
+		margin-top: 5px;
+		display: flex;
+		justify-content: space-between;
+	}
+}
+.userBox {
+	.infoTitle {
+		position: relative;
+		display: flex;
+		width: 100%;
+		height: 40px;
+		padding: 0 15px;
+		font-size: var(--titleSize);
+		justify-content: space-between;
+		align-items: center;
+
+		.titleAct {
+			margin-right: 30px;
+		}
+	}
+	.labelForm {
+		:global {
+			.el-form-item__label {
+				float: left;
+				padding: 0 12px 0 0;
+				font-size: 14px;
+				line-height: 15px;
+				color: #606266;
+				text-align: right;
+				vertical-align: middle;
+				box-sizing: border-box;
+			}
+		}
+	}
+}
+.filterBox {
+	height: 100%;
+	overflow: hidden;
+	.filterList {
+		max-height: 93%;
+		overflow-y: auto;
+	}
+	.filterItem {
+		margin-bottom: 15px;
+		display: flex;
+	}
+	.close {
+		margin-left: 15px;
+	}
+	.field,
+	.conditionType {
+		margin-right: 15px;
+	}
+	.errorText {
+		margin-bottom: 10px;
+		color: red;
+	}
+	:global {
+		.el-select {
+			width: 180px;
+		}
+	}
+}
+
+.tableColBox {
+	.tempBox {
+		margin-bottom: 20px;
+		display: flex;
+		align-items: center;
+		span {
+			margin-right: 15px;
+		}
+	}
+	.setExplain {
+		margin: 15px 0;
+		position: relative;
+		text-align: center;
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			width: 25%;
+			height: 1px;
+			background-color: #999;
+		}
+		&::before {
+			left: 0;
+		}
+		&::after {
+			right: 0;
+		}
+	}
+
+	.tagList {
+		min-height: 40px;
+		border-radius: 4px;
+	}
+
+	.noList {
+		border: 1px dashed #999;
+	}
+
+	.listGroupItem {
+		cursor: pointer;
+	}
+
+	.explainBox {
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+		color: #999;
+		border-bottom: 1px solid #eee;
+		.explain {
+			margin-right: 10px;
+			font-size: 18px;
+			color: #333;
+		}
+	}
+
+	:global {
+		.el-tag {
+			margin-bottom: 10px;
+			margin-right: 10px;
+		}
+	}
+}
+
+.tabColAction {
+	display: flex;
+	justify-content: space-between;
+	.colAct {
+		display: flex;
+	}
+	:global {
+		.el-upload {
+			margin-right: 10px;
+		}
+	}
+}
+
+.tableBody {
+	.tableName {
+		margin-bottom: 15px;
+		display: flex;
+		align-items: center;
+		> div {
+			flex: 1;
+			display: flex;
+			align-items: center;
+		}
+		:global {
+			.el-input {
+				margin-left: 10px;
+				flex: 1;
+			}
+		}
+	}
+	.item {
+		display: flex;
+		overflow: hidden;
+	}
+	.type {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	.del {
+		margin-left: 10px;
+	}
+	:global {
+		.el-form-item {
+			flex: 1;
+		}
+		.el-form-item__label {
+			padding-right: 10px;
+		}
+		.el-form-item__content {
+			width: 90%;
+		}
+		.el-select {
+			width: 100%;
+		}
+		.sort-move {
+			transition: transform 0.3s;
+		}
+		.mainBox {
+			margin-bottom: 15px;
+			max-height: calc(100% - 80px);
+			flex: unset;
+			height: unset;
+			overflow: auto;
+		}
+	}
+}
+.twoCols {
+	&:global(.el-form) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	:global {
+		.el-col-12 {
+			max-width: 48%;
+		}
+		.el-form-item {
+			margin-right: 0;
+		}
+	}
+}
+.previewBox {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	:global {
+		.el-tabs__content,
+		.el-tab-pane {
+			height: 100%;
+		}
+	}
+}
