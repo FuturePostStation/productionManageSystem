@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:01:35
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 16:52:40
+ * LastEditTime: 2023-05-17 17:19:22
  */
 import { type RouteRecordRaw } from "vue-router"
 const Layout = () => import("@/layout/index.vue")
@@ -15,6 +15,19 @@ const modules: RouteRecordRaw[] = []
 for (const fileName in requireModule) {
   modules.push(...requireModule[fileName].default)
 }
+
+/**
+ * 菜单顺序排序，优先sort排序，未设置则按路由模块名ASCII码排序
+ * 规则：
+ *  若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
+ *  若 a 等于 b，则返回 0。
+ *  若 a 大于 b，则返回一个大于 0 的值。
+ */
+modules.sort((val1, val2) => {
+  const a = val1!.meta.sort || val1.path.charCodeAt()
+  const b = val2!.meta.sort || val1.path.charCodeAt()
+  return a - b
+})
 
 // 常驻路由
 export const commonRoutes: RouteRecordRaw[] = [

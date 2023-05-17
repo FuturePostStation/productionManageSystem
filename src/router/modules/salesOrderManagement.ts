@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:03:37
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 16:05:06
+ * LastEditTime: 2023-05-17 17:13:59
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -13,7 +13,8 @@ export default [
     name: "SalesOrderManagement",
     meta: {
       title: "销售订单管理",
-      elIcon: "Grid"
+      elIcon: "Grid",
+      sort: 1
     },
     children: [
       {
