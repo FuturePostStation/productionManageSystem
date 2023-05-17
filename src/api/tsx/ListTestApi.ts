@@ -17,8 +17,8 @@ export default class TempApi extends CommonApi<ITempAdd, ITempRes, ITempQuery> {
       total: 2,
       pages: 1,
       list: [
-        { fieldName: "asds", fieldCode: "sfsd" },
-        { fieldName: "asds2112", fieldCode: "sfsasdd" }
+        { fieldName: "asds", fieldCode: "sfsd", id: 1 },
+        { fieldName: "asds2112", fieldCode: "sfsasdd", id: 2 }
       ]
     }
     // return request<IPage<ITempRes>>({ url: `${this.urlPrefix}/page`, method: "get", params })
@@ -34,4 +34,5 @@ export interface ITempAdd {}
 export interface ITempRes extends ITempAdd {
   fieldName: string
   fieldCode: string
+  id: number
 }

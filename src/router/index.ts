@@ -151,6 +151,213 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: "/prod-order-manage",
+    component: Layout,
+    redirect: "/prod-order-manage/prodOrderMaintenance",
+    name: "ProdOrderMaintenance",
+    meta: {
+      title: "生产订单管理",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "prodOrderMaintenance",
+        component: () => import("@/views/prod-order-manage/prodOrderMaintenance"),
+        name: "ProdOrderMaintenance",
+        meta: {
+          title: "生产订单维护",
+          keepAlive: true
+        }
+      },
+      {
+        path: "technologicalDesign",
+        component: () => import("@/views/prod-order-manage/technologicalDesign"),
+        name: "TechnologicalDesign",
+        meta: {
+          title: "工艺设计",
+          keepAlive: true
+        }
+      },
+      {
+        path: "porocessAudit",
+        component: () => import("@/views/prod-order-manage/processAudit"),
+        name: "ProcessAudit",
+        meta: {
+          title: "工艺审核",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/prod-process-manage",
+    component: Layout,
+    redirect: "/prod-process-manage/prodTaskAllocation",
+    name: "ProdTaskAllocation",
+    meta: {
+      title: "生产过程管理",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "prodTaskAllocation",
+        component: () => import("@/views/prod-process-manage/prodTaskAllocation"),
+        name: "ProdTaskAllocation",
+        meta: {
+          title: "生产任务分配",
+          keepAlive: true
+        }
+      },
+      {
+        path: "materialCollection",
+        component: () => import("@/views/prod-process-manage/materialCollection"),
+        name: "MaterialCollection",
+        meta: {
+          title: "物料领取",
+          keepAlive: true
+        }
+      },
+      {
+        path: "sheetMetalAssignment",
+        component: () => import("@/views/prod-process-manage/sheetMetalAssignment"),
+        name: "SheetMetalAssignment",
+        meta: {
+          title: "钣金车间任务指派",
+          keepAlive: true
+        }
+      },
+      {
+        path: "prodProgressReporting",
+        component: () => import("@/views/prod-process-manage/prodProgressReporting"),
+        name: "ProdProgressReporting",
+        meta: {
+          title: "生产进度填报",
+          keepAlive: true
+        }
+      },
+      {
+        path: "prodProgressAudit",
+        component: () => import("@/views/prod-process-manage/prodProgressAudit"),
+        name: "ProdProgressAudit",
+        meta: {
+          title: "生产进度审核",
+          keepAlive: true
+        }
+      },
+      {
+        path: "stageProductDelivery",
+        component: () => import("@/views/prod-process-manage/stageProductDelivery"),
+        name: "StageProductDelivery",
+        meta: {
+          title: "阶段产品交付",
+          keepAlive: true
+        }
+      },
+      {
+        path: "incomingProductInspection",
+        component: () => import("@/views/prod-process-manage/incomingProductInspection"),
+        name: "IncomingProductInspection",
+        meta: {
+          title: "入场产品检验",
+          keepAlive: true
+        }
+      },
+      {
+        path: "sprayAssignment",
+        component: () => import("@/views/prod-process-manage/sprayAssignment"),
+        name: "SprayAssignment",
+        meta: {
+          title: "喷涂车间任务指派",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/warehouse-manage",
+    component: Layout,
+    redirect: "/warehouse-manage/purchaseOrderManage",
+    name: "PurchaseOrderManage",
+    meta: {
+      title: "仓库管理",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "purchaseOrderManage",
+        component: () => import("@/views/warehouse-manage/purchaseOrderManage"),
+        name: "PurchaseOrderManage",
+        meta: {
+          title: "采购订单管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "materialManage",
+        component: () => import("@/views/warehouse-manage/materialManage"),
+        name: "MaterialManage",
+        meta: {
+          title: "物料管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "warehousingManage",
+        component: () => import("@/views/warehouse-manage/warehousingManage"),
+        name: "WarehousingManage",
+        meta: {
+          title: "入库管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "outboundManage",
+        component: () => import("@/views/warehouse-manage/outboundManage"),
+        name: "OutboundManage",
+        meta: {
+          title: "出库管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "prodManage",
+        component: () => import("@/views/warehouse-manage/prodManage"),
+        name: "ProdManage",
+        meta: {
+          title: "产品管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "productStorage",
+        component: () => import("@/views/warehouse-manage/productStorage"),
+        name: "ProductStorage",
+        meta: {
+          title: "产品入库",
+          keepAlive: true
+        }
+      },
+      {
+        path: "componentManage",
+        component: () => import("@/views/warehouse-manage/componentManage"),
+        name: "ComponentManage",
+        meta: {
+          title: "部件管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "partsWarehousing",
+        component: () => import("@/views/warehouse-manage/partsWarehousing"),
+        name: "PartsWarehousing",
+        meta: {
+          title: "部件入库",
+          keepAlive: true
+        }
+      }
+    ]
   }
 ]
 
