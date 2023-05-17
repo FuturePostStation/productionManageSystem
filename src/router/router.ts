@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:01:35
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 17:19:22
+ * LastEditTime: 2023-05-17 17:34:36
  */
 import { type RouteRecordRaw } from "vue-router"
 const Layout = () => import("@/layout/index.vue")
@@ -23,11 +23,7 @@ for (const fileName in requireModule) {
  *  若 a 等于 b，则返回 0。
  *  若 a 大于 b，则返回一个大于 0 的值。
  */
-modules.sort((val1, val2) => {
-  const a = val1!.meta.sort || val1.path.charCodeAt()
-  const b = val2!.meta.sort || val1.path.charCodeAt()
-  return a - b
-})
+modules.sort((a, b) => Number(a.meta?.sort || a.path.charCodeAt(0)) - Number(b.meta?.sort || b.path.charCodeAt(0)))
 
 // 常驻路由
 export const commonRoutes: RouteRecordRaw[] = [
