@@ -103,81 +103,55 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: "/sales-order-management",
+    component: Layout,
+    redirect: "/sales-order-management/maintenance",
+    name: "SalesOrderManagement",
+    meta: {
+      title: "销售订单管理",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "maintenance",
+        component: () => import("@/views/sales-order-management/maintenance"),
+        name: "Maintenance",
+        meta: {
+          title: "销售订单维护",
+          keepAlive: true
+        }
+      },
+      {
+        path: "examine",
+        component: () => import("@/views/sales-order-management/examine"),
+        name: "Examine",
+        meta: {
+          title: "销售订单审核",
+          keepAlive: true
+        }
+      },
+      {
+        path: "contract-maintenance",
+        component: () => import("@/views/sales-order-management/contractMaintenance"),
+        name: "ContractMaintenance",
+        meta: {
+          title: "外协合同维护",
+          keepAlive: true
+        }
+      },
+      {
+        path: "material-archiving",
+        component: () => import("@/views/sales-order-management/materialArchiving"),
+        name: "MaterialArchiving",
+        meta: {
+          title: "交互材料归档",
+          keepAlive: true
+        }
+      }
+    ]
   }
-  // {
-  //   path: "/menu",
-  //   component: Layout,
-  //   redirect: "/menu/menu1",
-  //   name: "Menu",
-  //   meta: {
-  //     title: "多级菜单",
-  //     svgIcon: "menu"
-  //   },
-  //   children: [
-  //     {
-  //       path: "menu1",
-  //       component: () => import("@/views/menu/menu1/index.vue"),
-  //       redirect: "/menu/menu1/menu1-1",
-  //       name: "Menu1",
-  //       meta: {
-  //         title: "menu1"
-  //       },
-  //       children: [
-  //         {
-  //           path: "menu1-1",
-  //           component: () => import("@/views/menu/menu1/menu1-1/index.vue"),
-  //           name: "Menu1-1",
-  //           meta: {
-  //             title: "menu1-1"
-  //           }
-  //         },
-  //         {
-  //           path: "menu1-2",
-  //           component: () => import("@/views/menu/menu1/menu1-2/index.vue"),
-  //           redirect: "/menu/menu1/menu1-2/menu1-2-1",
-  //           name: "Menu1-2",
-  //           meta: {
-  //             title: "menu1-2"
-  //           },
-  //           children: [
-  //             {
-  //               path: "menu1-2-1",
-  //               component: () => import("@/views/menu/menu1/menu1-2/menu1-2-1/index.vue"),
-  //               name: "Menu1-2-1",
-  //               meta: {
-  //                 title: "menu1-2-1"
-  //               }
-  //             },
-  //             {
-  //               path: "menu1-2-2",
-  //               component: () => import("@/views/menu/menu1/menu1-2/menu1-2-2/index.vue"),
-  //               name: "Menu1-2-2",
-  //               meta: {
-  //                 title: "menu1-2-2"
-  //               }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: "menu1-3",
-  //           component: () => import("@/views/menu/menu1/menu1-3/index.vue"),
-  //           name: "Menu1-3",
-  //           meta: {
-  //             title: "menu1-3"
-  //           }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: "menu2",
-  //       component: () => import("@/views/menu/menu2/index.vue"),
-  //       name: "Menu2",
-  //       meta: {
-  //         title: "menu2"
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 /**
