@@ -1,0 +1,20 @@
+.body {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+}
+.pdfList {
+  margin-top: 20px;
+  display: flex;
+}
+.action {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}

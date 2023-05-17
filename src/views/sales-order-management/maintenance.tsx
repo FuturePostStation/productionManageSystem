@@ -1,10 +1,16 @@
+/*
+ * @Author: tzx_sujie 1354146900@qq.com
+ * @Date: 2023-05-17 15:03:52
+ * @LastEditors: tzx_sujie 1354146900@qq.com
+ * @LastEditTime: 2023-05-17 17:33:00
+ */
 /**
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 10:37:47
  * LastEditors: 从前慢 330109371@qq.com
  * LastEditTime: 2023-05-17 10:38:22
  */
-import TempApi, { ITempQuery } from "@/api/tsx/ListTestApi"
+import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -21,7 +27,9 @@ export default new (class ListTest extends PageBase {
         query={this.query}
         dialogConfig={{ editDialog: TestDialog }}
         tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
-        vSlots={{ searchItems: this.searchItems }}
+        addHandler={this.addOrEdit}
+        editHandler={this.addOrEdit}
+        vSlots={{ searchItems: this.searchItems, tableHeadAct: this.tableHeadAct }}
       />
     )
   }
@@ -41,5 +49,24 @@ export default new (class ListTest extends PageBase {
       field1: { label: "字段标识" },
       field2: { label: "字段标识" }
     })
+  }
+
+  private tableHeadAct() {
+    return [
+      <el-button type="primary" onClick={() => this.submit()}>提交</el-button>,
+      <el-button type="primary" onClick={() => this.withdraw()}>撤回</el-button>,
+    ]
+  }
+
+
+  private submit() {
+  }
+
+  private withdraw() {
+
+  }
+
+  private addOrEdit(item: ITempRes) {
+    this.$router.push({ name: 'EditMaintenance', params: item ? { id: item.id } : undefined })
   }
 })()
