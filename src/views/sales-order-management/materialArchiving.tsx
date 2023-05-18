@@ -8,6 +8,7 @@ import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
+import router from "@/router"
 
 /** 交付材料归档 */
 export default new (class MaterialArchiving extends PageBase {
@@ -62,10 +63,10 @@ export default new (class MaterialArchiving extends PageBase {
 
   private addOrEdit() {
     if (this.selected.length == 0) return this.$message.error("当前还未选择销售订单")
-    this.$router.push({ name: "EditMaintenance", params: { pageType: "material", type: "add" }, query: { ids: [] } })
+    router.push({ name: "EditMaintenance", params: { pageType: "material", type: "add" }, query: { ids: [] } })
   }
 
   private details(id: number, type: "look" | "edit") {
-    this.$router.push({ name: "EditMaintenance", params: { pageType: "material", type, id: id } })
+    router.push({ name: "EditMaintenance", params: { pageType: "material", type, id: id } })
   }
 })()

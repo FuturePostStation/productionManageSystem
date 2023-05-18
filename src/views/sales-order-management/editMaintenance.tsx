@@ -3,6 +3,7 @@ import ElForm from "element-plus/es/components/form"
 import style from "./editMaintenance.module.scss"
 import Upload from "@/components/tsx/Upload"
 import router from "@/router"
+import { useRoute } from "vue-router"
 
 type TPageType = "order" | "material" | "contract"
 
@@ -30,8 +31,9 @@ export default new (class EditMaintenance extends PageBase {
   }
 
   public created() {
-    this.pageType = (this.$route.params.pageType as TPageType) || "order"
-    this.actType = (this.$route.params.type as TPageActType) || "add"
+    const route = useRoute()
+    this.pageType = (route.params.pageType as TPageType) || "order"
+    this.actType = (route.params.type as TPageActType) || "add"
   }
 
   private get formRules() {
