@@ -2,9 +2,9 @@ import { CommonApi } from "@/api/tsx/CommonApi"
 import { CommonHandler } from "@/api/tsx/CommonHander"
 import { IFieldItem, IPageSort } from "@/api/tsx/Interface"
 import { MethodType, Pager } from "@/api/tsx/Pager"
-import { DialogBase, IDialogConfig } from "@/components/tsx/dialog/DialogBase"
 import MyTable, { IColItem } from "@/components/tsx/MyTable"
-import { Plus, Refresh } from "@element-plus/icons-vue"
+import { DialogBase, IDialogConfig } from "@/components/tsx/dialog/DialogBase"
+import { Plus } from "@element-plus/icons-vue"
 import { ComponentObjectPropsOptions, PropType } from "vue"
 import style from "./ListView.module.scss"
 import MultiStatus from "./MultiStatus"
@@ -67,7 +67,7 @@ export default new (class ListView<
               tableData={this.pager}
               columns={this.columns}
               actionConfig={this.tableConfig?.actionConfig || { width: "120" }}
-              onSortChange={this.onSortChange}
+              onSelectionChange={this.selectionChange}
               v-slots={{ actionSlot: (scope: ElRow<Res>) => this.actionSlot(scope) }}
             />
           </MultiStatus>
@@ -172,8 +172,8 @@ export default new (class ListView<
     this.handler.refresh()
   }
 
-  private onSortChange(scope: ElColSort<any>) {
-    console.log(scope)
+  private selectionChange(val: Array<Res>) {
+    this.$emit("selectionChange", val)
   }
 })()
 
@@ -209,7 +209,9 @@ interface IProps<Q> {
   /** 编辑 外部处理 */
   editHandler?: Function
 }
-type IEvent = {}
+type IEvent = {
+  selectionChange: (v: AnyArray) => void
+}
 interface ISlots {
   searchItems?: () => TsxEl
   searchBtns?: () => TsxEl
@@ -217,5 +219,5 @@ interface ISlots {
   tableAction?: (scope: ElRow) => TsxEl
 }
 type IDialogType = {
-  new(...args: any): DialogBase
+  new (...args: any): DialogBase
 }

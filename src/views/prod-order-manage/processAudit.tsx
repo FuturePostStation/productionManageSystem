@@ -2,7 +2,7 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:10:45
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:44:07
+ * @LastEditTime: 2023-05-18 15:24:33
  */
 
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
@@ -47,21 +47,27 @@ export default new (class ProcessAudit extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.agree(scope.row.id)}>审核通过</el-button>,
-      <el-button type="primary" link onClick={() => this.disagree(scope.row.id)}>退回修改</el-button>
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.agree(scope.row.id)}>
+        审核通过
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.disagree(scope.row.id)}>
+        退回修改
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 
   private agree(id: number) {
-
+    console.log(id)
   }
 
   private disagree(id: number) {
-
+    console.log(id)
   }
 })()
