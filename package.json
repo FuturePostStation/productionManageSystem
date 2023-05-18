@@ -67,6 +67,8 @@
     "typescript": "^5.0.4",
     "unocss": "^0.51.12",
     "vite": "^4.3.5",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-progress": "^0.0.7",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.31.0",

@@ -1,12 +1,14 @@
 /// <reference types="vitest" />
 
-import { type ConfigEnv, type UserConfigExport, loadEnv } from "vite"
-import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
+import path, { resolve } from "path"
+import UnoCSS from "unocss/vite"
+import { loadEnv, type ConfigEnv, type UserConfigExport } from "vite"
+import compressPlugin from "vite-plugin-compression" // 打包资源压缩
+import progress from "vite-plugin-progress"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
-import UnoCSS from "unocss/vite"
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
@@ -77,7 +79,16 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[dir]-[name]"
       }),
       /** UnoCSS */
-      UnoCSS()
+      UnoCSS(),
+      progress(),
+      compressPlugin({
+        filter: /\.(js|css)$/i, // 压缩文件类型
+        verbose: true,
+        disable: false,
+        threshold: 1024 * 10,
+        algorithm: "gzip",
+        ext: ".gz"
+      })
       /** 自动按需引入 (已更改为完整引入，所以注释了) */
       // AutoImport({
       //   dts: "./types/auto-imports.d.ts",
