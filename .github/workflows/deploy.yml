@@ -12,7 +12,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
@@ -32,7 +32,7 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          deploy_key: ${{ secrets.V3_ADMIN_VITE }}
+          ACCESS_TOKEN: ${{ secrets.V3_ADMIN_VITE }}
           BASE_BRANCH: main # The branch the action should deploy from.
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist
