@@ -2,7 +2,7 @@
 	"Print to console": {
 		"prefix": "pageBase",
 		"body": [
-			"import { PageBase } from '@/components/PageBase';",
+			"import { PageBase } from '@/components/tsx/PageBase';",
 
 			"\nexport default new (class ${1:ClassName} extends PageBase {",
 			"\n\tpublic render(): JSX.Element {",

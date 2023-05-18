@@ -55,14 +55,11 @@ export default new (class ListView<
         {this.searchNode()}
         <div class="mainBox">
           <div class={style.tableActBox}>
-            <div class={style.filter}>{this.$slots.quickFilter && this.$slots.quickFilter()}</div>
             <div class={style.action}>
               <el-button type="primary" icon={Plus} size={this.buttonSize} onClick={() => this.add()}>
                 新增
               </el-button>
-              <el-button type="primary" icon={Refresh} size={this.buttonSize} onClick={() => this.refresh()}>
-                刷新
-              </el-button>
+              {this.$slots.tableHeadAct && this.$slots.tableHeadAct()}
             </div>
           </div>
           <MultiStatus loadStatus={this.handler.loadStatus} error={this.handler.error}>
@@ -216,9 +213,9 @@ type IEvent = {}
 interface ISlots {
   searchItems?: () => TsxEl
   searchBtns?: () => TsxEl
-  quickFilter?: () => TsxEl
+  tableHeadAct?: () => TsxEl
   tableAction?: (scope: ElRow) => TsxEl
 }
 type IDialogType = {
-  new (...args: any): DialogBase
+  new(...args: any): DialogBase
 }

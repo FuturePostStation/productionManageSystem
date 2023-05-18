@@ -27,6 +27,15 @@ export default [
         }
       },
       {
+        path: "editMaintenance/:id?",
+        component: () => import("@/views/sales-order-management/editMaintenance"),
+        name: "EditMaintenance",
+        meta: {
+          title: "销售订单编辑",
+          keepAlive: true
+        }
+      },
+      {
         path: "examine",
         component: () => import("@/views/sales-order-management/examine"),
         name: "Examine",
