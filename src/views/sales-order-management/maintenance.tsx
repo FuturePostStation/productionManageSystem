@@ -2,18 +2,19 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:03:52
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-18 14:47:19
+ * @LastEditTime: 2023-05-18 15:28:24
  */
 /**
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 10:37:47
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-18 11:33:06
+ * LastEditTime: 2023-05-18 12:20:01
  */
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
+import router from "@/router"
 
 /** 销售订单维护 */
 export default new (class Maintenance extends PageBase {
@@ -86,10 +87,10 @@ export default new (class Maintenance extends PageBase {
   private addOrEdit(item: ITempRes) {
     const params: Dict = { pageType: "order", type: item ? "edit" : "add" }
     if (item) params.id = item.id
-    this.$router.push({ name: "EditMaintenance", params })
+    router.push({ name: "EditMaintenance", params })
   }
 
   private details(id: number) {
-    this.$router.push({ name: "EditMaintenance", params: { pageType: "order", type: "look", id: id } })
+    router.push({ name: "EditMaintenance", params: { pageType: "order", type: "look", id: id } })
   }
 })()

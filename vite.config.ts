@@ -65,7 +65,8 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         }
       },
       /** 打包后静态资源目录 */
-      assetsDir: "static"
+      assetsDir: "static",
+      outDir: "dist"
     },
     /** Vite 插件 */
     plugins: [
