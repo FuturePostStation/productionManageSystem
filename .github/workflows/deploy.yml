@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+          ssh-key: ${{ secrets.V3_ADMIN_VITE }}
 
       - name: Setup Node.js 16.17.0
         uses: actions/setup-node@master
