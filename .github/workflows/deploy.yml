@@ -5,12 +5,11 @@ on:
     branches:
       - main
       
-permissions:
-  contents: write
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -35,5 +34,5 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.V3_ADMIN_VITE }}
           BASE_BRANCH: main # The branch the action should deploy from.
-          BRANCH: main # The branch the action should deploy to.
+          BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist
