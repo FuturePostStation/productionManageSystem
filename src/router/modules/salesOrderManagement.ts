@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:03:37
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 17:13:59
+ * LastEditTime: 2023-05-18 09:38:24
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -32,7 +32,8 @@ export default [
         name: "EditMaintenance",
         meta: {
           title: "销售订单编辑",
-          keepAlive: true
+          keepAlive: true,
+          hidden: true
         }
       },
       {

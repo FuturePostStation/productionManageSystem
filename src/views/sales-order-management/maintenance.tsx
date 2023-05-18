@@ -8,14 +8,14 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 10:37:47
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 10:38:22
+ * LastEditTime: 2023-05-18 11:33:06
  */
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
-
+import router from "@/router"
 export default new (class ListTest extends PageBase {
   private api = new TempApi()
   private query: ITempQuery = {}
@@ -53,20 +53,23 @@ export default new (class ListTest extends PageBase {
 
   private tableHeadAct() {
     return [
-      <el-button type="primary" onClick={() => this.submit()}>提交</el-button>,
-      <el-button type="primary" onClick={() => this.withdraw()}>撤回</el-button>,
+      <el-button type="primary" onClick={() => this.submit()}>
+        提交
+      </el-button>,
+      <el-button type="primary" onClick={() => this.withdraw()}>
+        撤回
+      </el-button>
     ]
   }
 
+  private submit() {}
 
-  private submit() {
-  }
-
-  private withdraw() {
-
-  }
+  private withdraw() {}
 
   private addOrEdit(item: ITempRes) {
-    this.$router.push({ name: 'EditMaintenance', params: item ? { id: item.id } : undefined })
+    router.push({
+      name: "EditMaintenance",
+      params: item ? { id: item.id } : undefined
+    })
   }
 })()
