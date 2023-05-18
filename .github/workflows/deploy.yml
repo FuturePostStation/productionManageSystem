@@ -35,5 +35,5 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.V3_ADMIN_VITE }}
           BASE_BRANCH: main # The branch the action should deploy from.
-          BRANCH: gh-pages # The branch the action should deploy to.
+          BRANCH: main # The branch the action should deploy to.
           FOLDER: dist
