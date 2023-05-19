@@ -48,3 +48,33 @@ a:hover {
 div:focus {
   outline: none;
 }
+
+.editBox {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.editMain {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+}
+.editActbox {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pdfList {
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+}
+.pdfItem {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.pdfName {
+  margin-top: 5px;
+}

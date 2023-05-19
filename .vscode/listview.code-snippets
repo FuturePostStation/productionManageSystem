@@ -2,25 +2,32 @@
 	"Print to console": {
 		"prefix": "listView",
 		"body": [
-			"import ListView from '@/components/tsx/ListView';",
-			"import { PageBase } from '@/components/tsx/PageBase';",
+			"import ListView from \"@/components/tsx/ListView\"",
+			"import { PageBase } from \"@/components/tsx/PageBase\"",
+
 			"\nexport default new (class ${1:ClassName} extends PageBase {",
-				"\tprivate api = new ${2:ApiName}();",
-				"\tprivate query: ${3:QueryName} = {};",
+				"\tprivate api = new ${2:ApiName}()",
+				"\tprivate query: ${3:QueryName} = {}",
 
 				"\n\tpublic render(): JSX.Element {",
-					"\t\treturn <ListView api={this.api} query={this.query} dialogConfig={{ editDialog: ${4:DialogName} }} vSlots={{ searchItems: this.searchItems }} />;",
+					"\t\treturn (",
+						"\t\t\t<ListView",
+							"\t\t\t\tapi={this.api}",
+							"\t\t\t\tquery={this.query}",
+							"\t\t\t\tdialogConfig={{ editDialog: ${4:DialogName} }}",
+							"\t\t\t\tvSlots={{ searchItems: this.searchItems }}",
+						"\t\t\t/>",
+					"\t\t)",
 				"\t}",
 
 				"\n\tprivate searchItems() {",
 					"\t\treturn [",
-						"\t\t\t<el-form-item label='名称'>",
+						"\t\t\t<el-form-item label=\"名称\">",
 							"\t\t\t\t<el-input v-model={this.query.name}></el-input>",
-						"\t\t\t</el-form-item>,",
-					"\t\t];",
+						"\t\t\t</el-form-item>",
+					"\t\t]",
 				"\t}",
-			"})();",
-
+			"})()"
 		],
 		"description": "分页列表视图 标准模版"
 	}

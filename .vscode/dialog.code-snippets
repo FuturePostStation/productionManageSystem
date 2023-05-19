@@ -2,19 +2,19 @@
 	"Print to console": {
 		"prefix": "dialogPage",
 		"body": [
-			"import { DialogBase } from '@/components/tsx/dialog/DialogBase';",
+			"import { DialogBase } from \"@/components/tsx/dialog/DialogBase\"",
 
 			"\nexport default class ${1:DialogName} extends DialogBase {",
 				"\tconstructor() {",
-					"\t\tsuper();",
+					"\t\tsuper()",
 				"\t}",
 
 				"\n\tprotected init(param?: any): void {",
-					"\t\tif (param) this.ruleForm = param;",
+					"\t\tif (param) this.ruleForm = param",
 				"\t}",
 
 				"\n\tprotected content(): JSX.Element {",
-					"\t\treturn <div>${2:content}</div>;",
+					"\t\treturn <div>${2:content}</div>",
 				"\t}",
 
 				"\n\tprotected confirm() {}",

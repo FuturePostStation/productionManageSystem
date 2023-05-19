@@ -2,14 +2,14 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:35:54
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:55:41
+ * @LastEditTime: 2023-05-19 14:50:08
  */
 
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import TestDialog from "@/components/tsx/dialog/TestDialog"
+import router from "@/router"
 
 /** 生产进度审核 */
 export default new (class ProdProgressAudit extends PageBase {
@@ -21,8 +21,8 @@ export default new (class ProdProgressAudit extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
-        dialogConfig={{ editDialog: TestDialog }}
         tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
+        addHandler={this.toDetails}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
@@ -47,16 +47,16 @@ export default new (class ProdProgressAudit extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.processAudit(scope.row.id)}>进度审核</el-button>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "edit")}>
+        进度审核
+      </el-button>
     ]
   }
 
-  private details(id: number) {
-
-  }
-
-  private processAudit(id: number) {
-
+  private toDetails(id: number, type: TPageActType) {
+    router.push({ name: "EditProcess", params: { pageType: "audit", type: type || "add", id: id } })
   }
 })()

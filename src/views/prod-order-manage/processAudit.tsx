@@ -2,28 +2,29 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:10:45
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-18 15:24:33
+ * @LastEditTime: 2023-05-19 16:07:31
  */
 
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import TestDialog from "@/components/tsx/dialog/TestDialog"
 
 /** 工艺审核 */
 export default new (class ProcessAudit extends PageBase {
   private api = new TempApi()
   private query: ITempQuery = {}
+  private selected: AnyArray = []
 
   public render(): JSX.Element {
     return (
       <ListView
         api={this.api}
         query={this.query}
-        dialogConfig={{ editDialog: TestDialog }}
+        notAdd
         tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "240" } }}
-        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
+        onSelectionChange={this.onSelectionChange}
+        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction, tableHeadAct: this.tableHeadAct }}
       />
     )
   }
@@ -45,6 +46,20 @@ export default new (class ProcessAudit extends PageBase {
     })
   }
 
+  private tableHeadAct() {
+    return [
+      <el-button type="primary" onClick={() => this.audit()}>
+        审核
+      </el-button>,
+      <el-button type="primary" onClick={() => this.send()}>
+        发送
+      </el-button>,
+      <el-button type="primary" onClick={() => this.exportExcel()}>
+        导出清单
+      </el-button>
+    ]
+  }
+
   private tableAction(scope: ElRow<ITempRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
@@ -58,6 +73,20 @@ export default new (class ProcessAudit extends PageBase {
       </el-button>
     ]
   }
+
+  private onSelectionChange(v: AnyArray) {
+    this.selected = v
+  }
+
+  private audit() {
+    if (this.selected.length == 0) return this.$message.error("当前还未选择提交数据")
+  }
+
+  private send() {
+    if (this.selected.length == 0) return this.$message.error("当前还未选择提交数据")
+  }
+
+  private exportExcel() {}
 
   private details(id: number) {
     console.log(id)

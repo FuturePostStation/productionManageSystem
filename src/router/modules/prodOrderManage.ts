@@ -36,6 +36,16 @@ export default [
         }
       },
       {
+        path: "editDesign/:type/:id?",
+        component: () => import("@/views/prod-order-manage/editDesign"),
+        name: "EditDesign",
+        meta: {
+          title: "设计",
+          keepAlive: true,
+          hidden: true
+        }
+      },
+      {
         path: "porocessAudit",
         component: () => import("@/views/prod-order-manage/processAudit"),
         name: "ProcessAudit",

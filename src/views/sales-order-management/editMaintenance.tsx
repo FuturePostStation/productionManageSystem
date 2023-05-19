@@ -1,6 +1,5 @@
 import { PageBase } from "@/components/tsx/PageBase"
 import ElForm from "element-plus/es/components/form"
-import style from "./editMaintenance.module.scss"
 import Upload from "@/components/tsx/Upload"
 import router from "@/router"
 import { useRoute } from "vue-router"
@@ -11,6 +10,7 @@ export default new (class EditMaintenance extends PageBase {
   private formRef: InstanceType<typeof ElForm> = null as any
   private pageType: TPageType = "order"
   private actType: TPageActType = "add"
+  private id = ""
   private ruleForm = {
     name: "name",
     type: "",
@@ -34,6 +34,7 @@ export default new (class EditMaintenance extends PageBase {
     const route = useRoute()
     this.pageType = (route.params.pageType as TPageType) || "order"
     this.actType = (route.params.type as TPageActType) || "add"
+    this.id = (route.params.id as string) || ""
   }
 
   private get formRules() {
@@ -78,8 +79,8 @@ export default new (class EditMaintenance extends PageBase {
 
   public render(): JSX.Element {
     return (
-      <div class={["app-container", style.body]}>
-        <div class={style.content}>
+      <div class="editBox">
+        <div class="editMain">
           <h2>{this.title}</h2>
           <el-form
             ref="formRef"
@@ -163,7 +164,7 @@ export default new (class EditMaintenance extends PageBase {
           </el-form>
         </div>
         {this.actType != "look" && (
-          <div class={style.action}>
+          <div class="editActbox">
             <el-button type="default" onClick={() => this.cancel()}>
               取消
             </el-button>
@@ -229,16 +230,16 @@ export default new (class EditMaintenance extends PageBase {
   private pdfNode() {
     if (this.pageType != "contract") {
       return (
-        <div class={style.pdfList}>
+        <div class="pdfList">
           {this.ruleForm.pdfList.map((item) => (
-            <div class={style.pdfItem}>
+            <div class="pdfItem">
               <Upload v-model={item.imagePath} disabled={this.actType == "look"} />
-              <div class={style.pdfName}>{item.name}</div>
+              <div class="pdfName">{item.name}</div>
             </div>
           ))}
-          <div class={style.pdfItem}>
+          <div class="pdfItem">
             <Upload disabled={this.actType == "look"} />
-            <div class={style.pdfName}>{this.pageType == "order" ? "上传合同文件" : "上传验收材料"}</div>
+            <div class="pdfName">{this.pageType == "order" ? "上传合同文件" : "上传验收材料"}</div>
           </div>
         </div>
       )
@@ -248,7 +249,7 @@ export default new (class EditMaintenance extends PageBase {
   private otherNode() {
     if (this.isOrder) {
       return (
-        <div class={style.otherBox}>
+        <div style={{ width: "100%" }}>
           <h2>其他信息</h2>
           {this.editable ? (
             <el-input type="textarea" resize="none" v-model={this.ruleForm.other} placeholder="请输入"></el-input>

@@ -2,14 +2,14 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:12:57
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:55:18
+ * @LastEditTime: 2023-05-19 14:52:54
  */
 
 import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import TestDialog from "@/components/tsx/dialog/TestDialog"
+import router from "@/router"
 
 /** 入场产品检验 */
 export default new (class IncomingProductInspection extends PageBase {
@@ -21,8 +21,8 @@ export default new (class IncomingProductInspection extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
-        dialogConfig={{ editDialog: TestDialog }}
         tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
+        addHandler={this.toDetails}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
@@ -47,16 +47,16 @@ export default new (class IncomingProductInspection extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.inspect(scope.row.id)}>入场检验</el-button>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "edit")}>
+        入场检验
+      </el-button>
     ]
   }
 
-  private details(id: number) {
-
-  }
-
-  private inspect(id: number) {
-
+  private toDetails(id: number, type: TPageActType) {
+    router.push({ name: "EditProcess", params: { pageType: "inspect", type: type || "add", id: id } })
   }
 })()

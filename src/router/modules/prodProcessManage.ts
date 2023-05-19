@@ -54,6 +54,16 @@ export default [
         }
       },
       {
+        path: "editProcess/:pageType/:type/:id?",
+        component: () => import("@/views/prod-process-manage/editProcess"),
+        name: "EditProcess",
+        meta: {
+          title: "生产进度",
+          keepAlive: true,
+          hidden: true
+        }
+      },
+      {
         path: "prodProgressAudit",
         component: () => import("@/views/prod-process-manage/prodProgressAudit"),
         name: "ProdProgressAudit",

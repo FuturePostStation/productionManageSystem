@@ -33,7 +33,8 @@ export default new (class ListView<
     },
     dialogConfig: Object,
     addHandler: Function,
-    editHandler: Function
+    editHandler: Function,
+    notAdd: Boolean
   }
 
   private pager: Pager<CommonApi<Add, Res, Query>, Res, Query> = null as any
@@ -56,9 +57,11 @@ export default new (class ListView<
         <div class="mainBox">
           <div class={style.tableActBox}>
             <div class={style.action}>
-              <el-button type="primary" icon={Plus} size={this.buttonSize} onClick={() => this.add()}>
-                新增
-              </el-button>
+              {!this.notAdd && (
+                <el-button type="primary" icon={Plus} size={this.buttonSize} onClick={() => this.add()}>
+                  新增
+                </el-button>
+              )}
               {this.$slots.tableHeadAct && this.$slots.tableHeadAct()}
             </div>
           </div>
@@ -179,7 +182,7 @@ export default new (class ListView<
 
 interface IProps<Q> {
   /** 插槽声明 目前还未找到 v-slots 的类型关联声明 */
-  vSlots?: ISlots
+  vSlots?: keyof ISlots
 
   api: CommonApi<any>
   /** 列表请求的其他方法 默认page */
@@ -203,7 +206,7 @@ interface IProps<Q> {
     editDialog: IDialogType
     editConfig?: IDialogConfig
   }
-
+  notAdd?: boolean
   /** 新增 外部处理 */
   addHandler?: Function
   /** 编辑 外部处理 */

@@ -47,16 +47,20 @@ export default new (class MaterialCollection extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.receive(scope.row.id)}>物料领取</el-button>
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.receive(scope.row.id)}>
+        物料领取
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 
   private receive(id: number) {
-
+    console.log(id)
   }
 })()
