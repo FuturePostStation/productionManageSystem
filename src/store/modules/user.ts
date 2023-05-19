@@ -63,15 +63,12 @@ export const useUserStore = defineStore("user", () => {
         })
     })
   }
-  interface KeyCodeResponse {
-    stat: number
-    data: any
-  }
+
   // 获取aes秘钥
   const getAesPublicRsaPublicAesIV = () => {
-    return new Promise<KeyCodeResponse>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       getKeyCode()
-        .then((res: KeyCodeResponse) => {
+        .then((res) => {
           if (res.stat === 1) {
             aesPublic.value = res.data.AES_KEY
             aesIV.value = res.data.AES_IV

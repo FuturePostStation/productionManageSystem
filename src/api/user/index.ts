@@ -8,12 +8,12 @@
  * @文件描述: 登录
  * @作者: PWL
  * @Date: 2019-01-16 16:57:57
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-12-28 18:06:24
+ * @LastEditors: tzx_sujie 1354146900@qq.com
+ * @LastEditTime: 2023-05-19 16:53:02
  */
 import { request } from "@/utils/service"
 // 登录
-export function userLogin(params) {
+export function userLogin(params: Dict) {
   return request({
     url: "/wb/sso/v1/login",
     // url: "pj/sso/login",
@@ -35,7 +35,7 @@ export function getMenu() {
 }
 
 // 退出登录
-export function loginOut(params) {
+export function loginOut(params: Dict) {
   return request({
     url: "/wb/sso/v1/loginOut",
     // url: "pj/sso/loginOut",
@@ -44,9 +44,13 @@ export function loginOut(params) {
   })
 }
 
+interface KeyCodeResponse {
+  stat: number
+  data: any
+}
 // AES的Key和偏移量以及RSA的公钥
 export function getKeyCode() {
-  return request({
+  return request<KeyCodeResponse>({
     url: "/wb/sso/v1/getKeyCode",
     // url: "pj/sso/getKeyCode",
     method: "GET"
@@ -54,7 +58,7 @@ export function getKeyCode() {
 }
 
 // 验证码
-export function getCode(params) {
+export function getCode(params: string) {
   return request({
     url: "/wb/sso/v1/code?uuid=" + params,
     // url: "pj/sso/code",
@@ -64,7 +68,7 @@ export function getCode(params) {
 }
 
 // 根据主键获取用户数据
-export function getUserById(params) {
+export function getUserById(params: string) {
   return request({
     url: "/wb/sso/v1/getUserById?userId=" + params,
     method: "GET"
