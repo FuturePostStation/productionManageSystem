@@ -1,3 +1,9 @@
+/*
+ * @Author: tzx_sujie 1354146900@qq.com
+ * @Date: 2023-05-19 14:17:33
+ * @LastEditors: tzx_sujie 1354146900@qq.com
+ * @LastEditTime: 2023-05-19 17:04:41
+ */
 import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
@@ -65,22 +71,22 @@ export const useUserStore = defineStore("user", () => {
   }
 
   // 获取aes秘钥
-  const getAesPublicRsaPublicAesIV = () => {
-    return new Promise((resolve, reject) => {
-      getKeyCode()
-        .then((res) => {
-          if (res.stat === 1) {
-            aesPublic.value = res.data.AES_KEY
-            aesIV.value = res.data.AES_IV
-            rsaPublic.value = res.data.RSA_PUBLIC_KEY
-            resolve(res) // resolve the promise with the response
-          } else {
-            reject("Invalid status") // reject the promise if status is invalid
-          }
-        })
-        .catch((error) => reject(error)) // catch any errors and reject the promise
-    })
+  async function getAesPublicRsaPublicAesIV() {
+    try {
+      const res = await getKeyCode()
+      if (res.stat === 1) {
+        aesPublic.value = res.data.AES_KEY
+        aesIV.value = res.data.AES_IV
+        rsaPublic.value = res.data.RSA_PUBLIC_KEY
+        return res // resolve the promise with the response
+      } else {
+        throw "Invalid status" // reject the promise if status is invalid
+      }
+    } catch (error) {
+      throw error
+    }
   }
+
   /** 获取用户详情 */
   const getInfo = () => {
     return new Promise((resolve, reject) => {
