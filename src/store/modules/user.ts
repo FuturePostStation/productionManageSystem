@@ -6,6 +6,7 @@ import { useTagsViewStore } from "./tags-view"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
+import { userLogin, getKeyCode } from "@/api/user"
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 import asyncRouteSettings from "@/config/async-route"
@@ -14,6 +15,9 @@ export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const username = ref<string>("")
+  const aesPublic = ref<string>("") // aes公钥
+  const aesIV = ref<string>("") // aes偏移量
+  const rsaPublic = ref<string>("") // rsa 公钥
 
   const permissionStore = usePermissionStore()
   const tagsViewStore = useTagsViewStore()
@@ -38,6 +42,46 @@ export const useUserStore = defineStore("user", () => {
         .catch((error) => {
           reject(error)
         })
+    })
+  }
+
+  // 登录
+  const Login = (userInfo: any) => {
+    return new Promise((resolve, reject) => {
+      userLogin(userInfo)
+        .then((res: any) => {
+          if (res.stat === 1) {
+            setToken(res.data.xtoken)
+            token.value = res.data.xtoken
+            userInfo.value = res.data.user
+            resolve(res)
+          }
+          resolve(res)
+        })
+        .catch((error: any) => {
+          reject(error)
+        })
+    })
+  }
+  interface KeyCodeResponse {
+    stat: number
+    data: any
+  }
+  // 获取aes秘钥
+  const getAesPublicRsaPublicAesIV = () => {
+    return new Promise<KeyCodeResponse>((resolve, reject) => {
+      getKeyCode()
+        .then((res: KeyCodeResponse) => {
+          if (res.stat === 1) {
+            aesPublic.value = res.data.AES_KEY
+            aesIV.value = res.data.AES_IV
+            rsaPublic.value = res.data.RSA_PUBLIC_KEY
+            resolve(res) // resolve the promise with the response
+          } else {
+            reject("Invalid status") // reject the promise if status is invalid
+          }
+        })
+        .catch((error) => reject(error)) // catch any errors and reject the promise
     })
   }
   /** 获取用户详情 */
@@ -94,7 +138,19 @@ export const useUserStore = defineStore("user", () => {
     tagsViewStore.delAllCachedViews()
   }
 
-  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  return {
+    token,
+    roles,
+    username,
+    setRoles,
+    login,
+    Login,
+    getInfo,
+    getAesPublicRsaPublicAesIV,
+    changeRoles,
+    logout,
+    resetToken
+  }
 })
 
 /** 在 setup 外使用 */

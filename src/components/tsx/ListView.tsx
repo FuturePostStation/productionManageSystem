@@ -217,5 +217,5 @@ interface ISlots {
   tableAction?: (scope: ElRow) => TsxEl
 }
 type IDialogType = {
-  new(...args: any): DialogBase
+  new (...args: any): DialogBase
 }
