@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+      
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,11 +25,12 @@ jobs:
           version: "8.5.0"
 
       - name: Build
-        run: pnpm install && pnpm build:prod
+        run: pnpm install --no-frozen-lockfile && pnpm build:prod
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: ${{ secrets.V3_ADMIN_VITE }}
-          BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: main # The branch the action should deploy from.
+          BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: dist

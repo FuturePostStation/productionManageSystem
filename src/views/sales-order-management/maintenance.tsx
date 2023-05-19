@@ -2,7 +2,7 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-17 15:03:52
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 17:33:00
+ * @LastEditTime: 2023-05-18 15:28:24
  */
 /**
  * Author: 从前慢 330109371@qq.com
@@ -14,22 +14,24 @@ import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import TestDialog from "@/components/tsx/dialog/TestDialog"
 import router from "@/router"
-export default new (class ListTest extends PageBase {
+
+/** 销售订单维护 */
+export default new (class Maintenance extends PageBase {
   private api = new TempApi()
   private query: ITempQuery = {}
+  private selected: Array<ITempRes> = []
 
   public render(): JSX.Element {
     return (
       <ListView
         api={this.api}
         query={this.query}
-        dialogConfig={{ editDialog: TestDialog }}
         tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
         addHandler={this.addOrEdit}
         editHandler={this.addOrEdit}
-        vSlots={{ searchItems: this.searchItems, tableHeadAct: this.tableHeadAct }}
+        onSelectionChange={this.onSelectionChange}
+        vSlots={{ searchItems: this.searchItems, tableHeadAct: this.tableHeadAct, tableAction: this.tableAction }}
       />
     )
   }
@@ -39,6 +41,14 @@ export default new (class ListTest extends PageBase {
       <el-form-item label="名称">
         <el-input v-model={this.query.name}></el-input>
       </el-form-item>
+    ]
+  }
+
+  private tableAction(scope: ElRow<ITempRes>) {
+    return [
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>
     ]
   }
 
@@ -62,14 +72,25 @@ export default new (class ListTest extends PageBase {
     ]
   }
 
-  private submit() {}
+  private submit() {
+    if (this.selected.length == 0) return this.$message.error("当前还未选择提交数据")
+  }
 
-  private withdraw() {}
+  private withdraw() {
+    if (this.selected.length == 0) return this.$message.error("当前还未选择撤回数据")
+  }
+
+  private onSelectionChange(v: Array<ITempRes>) {
+    this.selected = v
+  }
 
   private addOrEdit(item: ITempRes) {
-    router.push({
-      name: "EditMaintenance",
-      params: item ? { id: item.id } : undefined
-    })
+    const params: Dict = { pageType: "order", type: item ? "edit" : "add" }
+    if (item) params.id = item.id
+    router.push({ name: "EditMaintenance", params })
+  }
+
+  private details(id: number) {
+    router.push({ name: "EditMaintenance", params: { pageType: "order", type: "look", id: id } })
   }
 })()

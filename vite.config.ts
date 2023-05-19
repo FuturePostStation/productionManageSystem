@@ -14,9 +14,11 @@ import svgLoader from "vite-svg-loader"
 export default (configEnv: ConfigEnv): UserConfigExport => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as ImportMetaEnv
   const { VITE_PUBLIC_PATH } = viteEnv
+  console.log(VITE_PUBLIC_PATH)
   return {
     /** 打包时根据实际情况修改 base */
-    base: VITE_PUBLIC_PATH,
+    // base: VITE_PUBLIC_PATH,
+    base: "./",
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */

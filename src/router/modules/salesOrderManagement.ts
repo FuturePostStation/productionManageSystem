@@ -27,7 +27,7 @@ export default [
         }
       },
       {
-        path: "editMaintenance/:id?",
+        path: "editMaintenance/:pageType/:type/:id?",
         component: () => import("@/views/sales-order-management/editMaintenance"),
         name: "EditMaintenance",
         meta: {

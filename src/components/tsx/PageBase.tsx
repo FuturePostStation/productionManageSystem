@@ -1,16 +1,11 @@
-import { UnionToIntersection } from "@vue/shared"
 import {
   Component,
   ComponentObjectPropsOptions,
   ComponentPublicInstance,
   ComputedOptions,
-  defineComponent,
-  MethodOptions,
-  PropType,
-  ref,
-  SetupContext,
-  VNode,
   CreateComponentPublicInstance,
+  MethodOptions,
+  VNode,
   getCurrentInstance,
   nextTick
 } from "vue"
@@ -19,7 +14,7 @@ let dataQueue: Dict = {}
 const whiteListAttr = ["self", "isCollection", "emits", "expose", "slots", "methods", "props", "computed"]
 const whiteListMethods = ["constructor", "setup", "render", "created", "mounted"]
 
-export abstract class PageBase<Props = {}, PrefixedEvents = {}, ScopedSlotArgs = {}> {
+export abstract class PageBase<Props = {}, PrefixedEvents = {}> {
   constructor() {
     const prototype = Object.getPrototypeOf(this)
     // console.log(prototype);
@@ -48,7 +43,7 @@ export abstract class PageBase<Props = {}, PrefixedEvents = {}, ScopedSlotArgs =
     return () => dataQueue
   }
 
-  public setup(prop: Props, ctx: SetupContext<Array<keyof PrefixedEvents>>) {
+  public setup() {
     const ins = getCurrentInstance()
     if (ins?.refs) {
       nextTick(() => {
@@ -82,6 +77,7 @@ export interface PageBase<Props extends Dict = {}, PrefixedEvents extends EmitsO
   created(): void
   mounted(): void
 }
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never
 type EmitFns<Options, Event extends keyof Options = keyof Options> = UnionToIntersection<
   {
     [key in Event]: Options[key] extends (...args: infer Args) => any
@@ -93,56 +89,4 @@ interface CreateElement<Props> {
   (tag?: string | Component<Props, any, any, any> | (() => Component), children?: VNode[]): VNode
   (tag?: string | Component<Props, any, any, any> | (() => Component), data?: any, children?: VNode[]): VNode
   new (tag?: string | Component<Props, any, any, any> | (() => Component), children?: VNode[]): any
-}
-
-export const Test1 = defineComponent({
-  expose: ["init"],
-  methods: {
-    init() {}
-  }
-})
-
-export const Test3 = defineComponent({
-  setup(props, ctx) {
-    const test1 = ref<InstanceType<typeof Test1>>()
-    test1.value?.init
-  }
-})
-export const Test2 = new (class Test2 extends PageBase<ITestProps, IEvent, ISlots> {
-  constructor() {
-    super()
-  }
-  protected props: ComponentObjectPropsOptions<ITestProps> = {
-    qwe: String,
-    typeList: { type: Array as PropType<AnyArray> }
-  }
-  public emits: (keyof IEvent)[] = ["init"]
-
-  public render(): JSX.Element {
-    // console.log('Test2: ', this.qwe, this.$props);
-    // if (this.$slots.footer) this.$slots.footer();
-    // this.$emit('init', '');
-    return (
-      <div>
-        content
-        <div ref="nodeRef"></div>
-      </div>
-    )
-  }
-})()
-
-interface ITestProps {
-  /** 插槽声明 目前还未找到 v-slots 的类型关联声明 */
-  vSlots?: ISlots
-  qwe: string
-  typeList: AnyArray
-  asd?: string
-}
-type IEvent = {
-  init(asd: string): void
-  search(v: string): void
-}
-interface ISlots {
-  default: () => TsxEl
-  footer?: () => TsxEl
 }
