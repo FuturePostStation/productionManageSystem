@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-22 15:54:03
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-22 17:48:33
+ * LastEditTime: 2023-05-22 17:58:02
  */
 import { PropType, defineComponent } from "vue"
 
@@ -32,6 +32,16 @@ const MyComponent = defineComponent({
       default: "新增用户"
     }
     // 其他属性
+  },
+  setup(props) {
+    const handleSelect = (dilogDept: string, flag: boolean) => {
+      // Your implementation here
+      console.log(dilogDept, flag)
+    }
+
+    return {
+      handleSelect
+    }
   },
   render(): JSX.Element {
     return (
