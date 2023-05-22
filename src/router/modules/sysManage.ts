@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-22 15:25:34
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-22 15:53:11
+ * LastEditTime: 2023-05-22 17:35:17
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -28,7 +28,7 @@ export default [
       },
       {
         path: "add-user",
-        component: () => import("@/views/sys-management/add-user"),
+        component: () => import("@/views/sys-management/addUser"),
         name: "AddUser",
         meta: {
           title: "用户管理",

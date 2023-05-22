@@ -1,0 +1,195 @@
+// 品牌蓝
+$blue-base: #1E86FF;
+// 页面一行两列新增/编辑表单
+.zh-form-page {
+  background: #FFFFFF;
+  padding: 0 30px 20px 30px;
+  box-sizing: border-box;
+  .zh-page-head {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E5ECFD;
+    .zh-page-head_left {
+      height: 100%;
+      display: flex;
+      span {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: #454545;
+        font-size: 14px;
+        font-family: sans-serif, PingFangSC, PingFangSC-Medium;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+      }
+      span:nth-child(2) {
+        margin-left: 60px;
+      }
+      .active {
+        color: $blue-base;
+      }
+      .active::after {
+        position: absolute;
+        content: '';
+        width: 42px;
+        height: 2px;
+        background: $blue-base;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    .zh-page-head_right {
+      button {
+        width: 100px;
+        height: 36px;
+        padding: 0;
+      }
+      .el-button + .el-button {
+        margin-left: 10px;
+      }
+    }
+  }
+  // 表单 label-5个字
+  .zh-page_formwrap_5 {
+    width: 943px !important;
+  }
+  // 表单 label-6个字
+  .zh-page_formwrap_6 {
+    width: 959px !important;
+  }
+  // 表单 label-默认4个字
+  .zh-page_formwrap_base {
+    width: 931px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // 表单项在右边且不需要验证,防止整体表单右边对不齐
+    .zh-noquire-pr {
+      padding-right: 15px;
+    }
+    // 表单 label-默认4个字
+    .zh-page-form_textarea_base,
+    .zh-page-form_formitem_base {
+      display: flex;
+      margin-bottom: 30px;
+      .el-form-item__label {
+        min-width: 58px;
+        margin-right: 16px;
+      }
+      .el-form-item__label::before {
+        content: none !important;
+      }
+      .el-form-item__content {
+        width: 310px;
+        .el-date-editor.el-input {
+          width: 100%;
+        }
+      }
+    }
+    // 表单 label-5个字
+    .zh-page-form_textarea_5,
+    .zh-page-form_formitem_5 {
+      display: flex;
+      margin-bottom: 30px;
+      .el-form-item__label {
+        min-width: 70px;
+        margin-right: 16px;
+      }
+      .el-form-item__label::before {
+        content: none !important;
+      }
+      .el-form-item__content {
+        width: 310px;
+        .el-date-editor.el-input {
+          width: 100%;
+        }
+      }
+    }
+    .zh-page-form_textarea_required_5 {
+      width: 411px;
+    }
+    // 表单 label-6个字
+    .zh-page-form_textarea_6,
+    .zh-page-form_formitem_6 {
+      display: flex;
+      margin-bottom: 30px;
+      .el-form-item__label {
+        min-width: 84px;
+        margin-right: 16px;
+      }
+      .el-form-item__label::before {
+        content: none !important;
+      }
+      .el-form-item__content {
+        width: 310px;
+        .el-date-editor.el-input {
+          width: 100%;
+        }
+      }
+    }
+    // 表单 label-7个字
+    .zh-page-form_textarea_7,
+    .zh-page-form_formitem_7 {
+      width: 441px;
+      display: flex;
+      margin-bottom: 30px;
+      .el-form-item__label {
+        min-width: 98px;
+        margin-right: 16px;
+      }
+      .el-form-item__label::before {
+        content: none !important;
+      }
+      .el-form-item__content {
+        width: 310px;
+        .el-date-editor.el-input {
+          width: 100%;
+        }
+      }
+    }
+    // 文本域
+    .zh-page-form_textarea_base {
+      .el-form-item__content {
+        width: 842px;
+      }
+    }
+    .zh-page-form_textarea_5 {
+      .el-form-item__content {
+        width: 842px;
+      }
+    }
+    .zh-page-form_textarea_6 {
+      .el-form-item__content {
+        width: 842px;
+      }
+    }
+    .zh-page-form_textarea_7 {
+      width: auto;
+      .el-form-item__content {
+        width: 812px;
+      }
+    }
+    // 选择组织专属样式-调整svg样式
+    .org-item {
+      .svg-icon {
+        position: absolute;
+        top: 10px;
+        right: 5px;
+        font-size: 16px;
+      }
+    }
+    .is-required::after {
+      content: '*';
+      margin-left: 10px;
+      width: 5px;
+      height: 5px;
+      color: #FA574F;
+      display: flex;
+      align-self: center;
+    }
+  }
+}
