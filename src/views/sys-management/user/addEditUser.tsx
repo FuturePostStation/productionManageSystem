@@ -2,9 +2,10 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-22 15:54:03
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-22 17:58:02
+ * LastEditTime: 2023-05-23 10:35:30
  */
-import { PropType, defineComponent } from "vue"
+import router from "@/router"
+import { PropType, Ref, defineComponent, ref } from "vue"
 
 export interface User {
   id: number
@@ -17,13 +18,19 @@ export interface User {
   status: number
   // 其他属性
 }
+interface UserSexOptions {
+  value: string
+  label: string
+}
+
+// 用户性别列表
+const userSexOptions: UserSexOptions[] = [
+  { value: "male", label: "男" },
+  { value: "female", label: "女" }
+]
+
 const MyComponent = defineComponent({
   props: {
-    user: {
-      type: Object as PropType<User>,
-      default: () => ({}),
-      required: true
-    },
     rules: {
       type: Object as PropType<any>
     },
@@ -34,13 +41,33 @@ const MyComponent = defineComponent({
     // 其他属性
   },
   setup(props) {
+    // 用户信息
+    const user: Ref<User> = ref({
+      id: 0,
+      userName: "johndoe",
+      fullName: "John Doe",
+      guid: "abc123",
+      deptName: "",
+      email: "",
+      sex: "",
+      status: 0
+    })
+
     const handleSelect = (dilogDept: string, flag: boolean) => {
       // Your implementation here
       console.log(dilogDept, flag)
     }
 
+    // 返回
+    const goBack = () => {
+      router.go(-1)
+    }
+
     return {
-      handleSelect
+      handleSelect,
+      goBack,
+      userSexOptions,
+      user
     }
   },
   render(): JSX.Element {
@@ -55,7 +82,7 @@ const MyComponent = defineComponent({
               <el-button type="primary" onClick={() => {}}>
                 保存
               </el-button>
-              <el-button onClick={() => {}}>返回</el-button>
+              <el-button onClick={() => this.goBack()}>返回</el-button>
             </div>
           </div>
           <el-form
@@ -96,13 +123,13 @@ const MyComponent = defineComponent({
                 </i>
               </el-input>
             </el-form-item>
-            {/* <el-form-item label="性别" className="zh-page-form_formitem_5" prop="sex">
-        <el-select value={this.user.sex} placeholder="性别">
-          {this.userSexOptions.map((item) => (
-            <el-option key={item.dictValue} label={item.dictLabel} value={item.dictValue} />
-          ))}
-        </el-select>
-      </el-form-item> */}
+            <el-form-item label="性别" className="zh-page-form_formitem_5" prop="sex">
+              <el-select value={this.user.sex} placeholder="性别">
+                {userSexOptions?.map((item) => (
+                  <el-option key={item.value} label={item.label} value={item.value} />
+                ))}
+              </el-select>
+            </el-form-item>
             <el-form-item label="电子邮箱" className="zh-page-form_formitem_5" prop="email">
               <el-input value={this.user.email} type="email" autocomplete="off" placeholder="请输入" />
             </el-form-item>

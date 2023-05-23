@@ -1,15 +1,15 @@
 /**
  * Author: 从前慢 330109371@qq.com
- * Date: 2023-05-22 15:35:30
+ * Date: 2023-05-23 10:43:28
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-22 15:35:41
+ * LastEditTime: 2023-05-23 11:10:18
  */
 import TempApi, { ITempQuery } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
-
+import router from "@/router"
 export default new (class ListTest extends PageBase {
   private api = new TempApi()
   private query: ITempQuery = {}
@@ -19,6 +19,7 @@ export default new (class ListTest extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
+        addHandler={this.addHandler}
         dialogConfig={{ editDialog: TestDialog }}
         tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
         vSlots={{ searchItems: this.searchItems }}
@@ -32,6 +33,12 @@ export default new (class ListTest extends PageBase {
         <el-input v-model={this.query.name}></el-input>
       </el-form-item>
     ]
+  }
+
+  private addHandler() {
+    router.push({
+      name: "AddMenu"
+    })
   }
 
   private setColumns(cols: Dict<IColItem>) {
