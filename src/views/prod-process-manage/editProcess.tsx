@@ -2,7 +2,7 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-19 14:23:21
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-19 15:54:25
+ * @LastEditTime: 2023-05-24 16:24:12
  */
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -90,8 +90,18 @@ export default new (class EditProcess extends PageBase {
 
   public render(): JSX.Element {
     return (
-      <div class="editBox">
-        <div class="editMain">
+      <div class="app-container">
+        <div class="zh-form-page">
+          <div class="zh-page-head">
+            <div class="zh-page-head_left">
+              <span>生产进度</span>
+            </div>
+            <div class="zh-page-head_right">
+              <el-button type="default" onClick={() => router.back()}>
+                取消
+              </el-button>
+            </div>
+          </div>
           <el-table data={this.tableData} border row-key="id">
             {Object.keys(this.columns).map((key) => {
               const item = this.columns[key]
@@ -99,11 +109,6 @@ export default new (class EditProcess extends PageBase {
             })}
             {this.isOperational && <el-table-column label="操作" width="120" v-slots={{ default: this.actionSlot }} />}
           </el-table>
-        </div>
-        <div class="editActbox">
-          <el-button type="default" onClick={() => router.back()}>
-            取消
-          </el-button>
         </div>
       </div>
     )

@@ -79,100 +79,95 @@ export default new (class EditMaintenance extends PageBase {
 
   public render(): JSX.Element {
     return (
-      <div class="editBox">
-        <div class="editMain">
+      <div class="app-container editWrap">
+        <div class="zh-form-page">
+          <div class="zh-page-head">
+            <div class="zh-page-head_left">
+              <span>{this.title}</span>
+            </div>
+            <div class="zh-page-head_right">
+              {this.actType != "look" && (
+                <el-button type="primary" onClick={() => this.save()}>
+                  保存
+                </el-button>
+              )}
+              <el-button onClick={() => this.cancel()}>返回</el-button>
+            </div>
+          </div>
           <h2>{this.title}</h2>
           <el-form
             ref="formRef"
             model={this.ruleForm}
             rules={this.formRules}
             size="default"
-            label-position="top"
-            inline
+            label-width="140px"
+            class="zh-page_formwrap_base zh-page_formwrap_5"
           >
-            <el-col span={12}>
-              <el-form-item label="合同名称" prop="name">
-                {this.editable ? (
-                  <el-input v-model={this.ruleForm.name} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.name
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="合同类型" prop="type">
-                {this.editable ? (
-                  <el-input v-model={this.ruleForm.type} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.type
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="销售订单名称" prop="saleName">
-                {this.editable ? (
-                  <el-input v-model={this.ruleForm.saleName} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.saleName
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="销售订单编号" prop="saleNo">
-                {this.ruleForm.saleNo}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="合同金额（元）" prop="money">
-                {this.editable ? (
-                  <el-input type="number" v-model={this.ruleForm.money} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.money
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="合同首付款（元）" prop="downPay">
-                {this.editable ? (
-                  <el-input type="number" v-model={this.ruleForm.downPay} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.downPay
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="甲方" prop="partyA">
-                {this.editable ? (
-                  <el-input v-model={this.ruleForm.partyA} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.partyA
-                )}
-              </el-form-item>
-            </el-col>
-            <el-col span={12}>
-              <el-form-item label="乙方" prop="partyB">
-                {this.editable ? (
-                  <el-input v-model={this.ruleForm.partyB} placeholder="请输入"></el-input>
-                ) : (
-                  this.ruleForm.partyB
-                )}
-              </el-form-item>
-            </el-col>
+            <el-form-item label="合同名称" prop="name" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input v-model={this.ruleForm.name} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.name
+              )}
+            </el-form-item>
+
+            <el-form-item label="合同类型" prop="type" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input v-model={this.ruleForm.type} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.type
+              )}
+            </el-form-item>
+
+            <el-form-item label="销售订单名称" prop="saleName" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input v-model={this.ruleForm.saleName} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.saleName
+              )}
+            </el-form-item>
+
+            <el-form-item label="销售订单编号" prop="saleNo" class="zh-page-form_formitem_5">
+              {this.ruleForm.saleNo}
+            </el-form-item>
+
+            <el-form-item label="合同金额（元）" prop="money" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input type="number" v-model={this.ruleForm.money} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.money
+              )}
+            </el-form-item>
+
+            <el-form-item label="合同首付款（元）" prop="downPay" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input type="number" v-model={this.ruleForm.downPay} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.downPay
+              )}
+            </el-form-item>
+
+            <el-form-item label="甲方" prop="partyA" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input v-model={this.ruleForm.partyA} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.partyA
+              )}
+            </el-form-item>
+
+            <el-form-item label="乙方" prop="partyB" class="zh-page-form_formitem_5">
+              {this.editable ? (
+                <el-input v-model={this.ruleForm.partyB} placeholder="请输入"></el-input>
+              ) : (
+                this.ruleForm.partyB
+              )}
+            </el-form-item>
+
             {this.orderNode()}
             {this.otherNode()}
             {this.pdfNode()}
           </el-form>
         </div>
-        {this.actType != "look" && (
-          <div class="editActbox">
-            <el-button type="default" onClick={() => this.cancel()}>
-              取消
-            </el-button>
-            <el-button type="primary" onClick={() => this.save()}>
-              保存
-            </el-button>
-          </div>
-        )}
       </div>
     )
   }
@@ -180,49 +175,37 @@ export default new (class EditMaintenance extends PageBase {
   private orderNode() {
     if (this.isOrder) {
       return [
-        <el-col span={12}>
-          <el-form-item label="合同签订日期" prop="signDate">
-            {this.editable ? (
-              <el-date-picker
-                v-model={this.ruleForm.signDate}
-                type="date"
-                placeholder="Pick a date"
-                style="width: 100%"
-              />
-            ) : (
-              this.ruleForm.signDate
-            )}
-          </el-form-item>
-        </el-col>,
-        <el-col span={12}>
-          <el-form-item label="合同生效日期" prop="signDate">
-            {this.editable ? (
-              <el-date-picker
-                v-model={this.ruleForm.signDate}
-                type="date"
-                placeholder="Pick a date"
-                style="width: 100%"
-              />
-            ) : (
-              this.ruleForm.signDate
-            )}
-          </el-form-item>
-        </el-col>,
-        <el-col span={12}>
-          <el-form-item label="合同结束日期" prop="endDate">
-            {this.editable ? (
-              <el-date-picker
-                v-model={this.ruleForm.endDate}
-                type="date"
-                placeholder="Pick a date"
-                style="width: 100%"
-              />
-            ) : (
-              this.ruleForm.endDate
-            )}
-          </el-form-item>
-        </el-col>,
-        <el-col span={12}></el-col>
+        <el-form-item label="合同签订日期" prop="signDate" class="zh-page-form_formitem_5">
+          {this.editable ? (
+            <el-date-picker
+              v-model={this.ruleForm.signDate}
+              type="date"
+              placeholder="Pick a date"
+              style="width: 100%"
+            />
+          ) : (
+            this.ruleForm.signDate
+          )}
+        </el-form-item>,
+        <el-form-item label="合同生效日期" prop="signDate" class="zh-page-form_formitem_5">
+          {this.editable ? (
+            <el-date-picker
+              v-model={this.ruleForm.signDate}
+              type="date"
+              placeholder="Pick a date"
+              style="width: 100%"
+            />
+          ) : (
+            this.ruleForm.signDate
+          )}
+        </el-form-item>,
+        <el-form-item label="合同结束日期" prop="endDate" class="zh-page-form_formitem_5">
+          {this.editable ? (
+            <el-date-picker v-model={this.ruleForm.endDate} type="date" placeholder="Pick a date" style="width: 100%" />
+          ) : (
+            this.ruleForm.endDate
+          )}
+        </el-form-item>
       ]
     }
   }
@@ -262,29 +245,25 @@ export default new (class EditMaintenance extends PageBase {
       return <div>合同列表</div>
     } else if (this.pageType == "material") {
       return [
-        <el-col span={12}>
-          <el-form-item label="回款金额（元）" prop="collectionAmount">
-            {this.editable ? (
-              <el-input type="number" v-model={this.ruleForm.collectionAmount} placeholder="请输入"></el-input>
-            ) : (
-              this.ruleForm.collectionAmount
-            )}
-          </el-form-item>
-        </el-col>,
-        <el-col span={12}>
-          <el-form-item label="交付日期" prop="deliverDate">
-            {this.editable ? (
-              <el-date-picker
-                v-model={this.ruleForm.deliverDate}
-                type="date"
-                placeholder="Pick a date"
-                style="width: 100%"
-              />
-            ) : (
-              this.ruleForm.deliverDate
-            )}
-          </el-form-item>
-        </el-col>
+        <el-form-item label="回款金额（元）" prop="collectionAmount" class="zh-page-form_formitem_5">
+          {this.editable ? (
+            <el-input type="number" v-model={this.ruleForm.collectionAmount} placeholder="请输入"></el-input>
+          ) : (
+            this.ruleForm.collectionAmount
+          )}
+        </el-form-item>,
+        <el-form-item label="交付日期" prop="deliverDate" class="zh-page-form_formitem_5">
+          {this.editable ? (
+            <el-date-picker
+              v-model={this.ruleForm.deliverDate}
+              type="date"
+              placeholder="Pick a date"
+              style="width: 100%"
+            />
+          ) : (
+            this.ruleForm.deliverDate
+          )}
+        </el-form-item>
       ]
     }
   }
