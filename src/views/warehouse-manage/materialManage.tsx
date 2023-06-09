@@ -35,7 +35,7 @@ export default new (class MaterialManage extends PageBase {
         <el-input v-model={this.query.name}></el-input>
       </el-form-item>,
       <el-form-item label="供应商">
-        <SelectDict v-model={this.query.name} dictCode='123' />
+        <SelectDict v-model={this.query.name} dictCode="123" />
       </el-form-item>,
       <el-form-item label="入库单号">
         <el-input v-model={this.query.name}></el-input>
@@ -57,11 +57,13 @@ export default new (class MaterialManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>查看</el-button>,
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        查看
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 })()

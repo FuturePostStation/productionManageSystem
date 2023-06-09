@@ -22,7 +22,7 @@ export default new (class WarehousingManage extends PageBase {
         api={this.api}
         query={this.query}
         dialogConfig={{ editDialog: TestDialog }}
-        tableConfig={{ setColumns: this.setColumns,notEdit: true, notDel: true, actionConfig: { width: "120" } }}
+        tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
@@ -47,16 +47,20 @@ export default new (class WarehousingManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.warehousing(scope.row.id)}>入库</el-button>
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.warehousing(scope.row.id)}>
+        入库
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 
   private warehousing(id: number) {
-
+    console.log(id)
   }
 })()

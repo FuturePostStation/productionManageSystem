@@ -1,5 +1,4 @@
 import { Pager } from "@/api/tsx/Pager"
-import { Lock, Unlock } from "@element-plus/icons-vue"
 import { PropType, defineComponent } from "vue"
 import Pagination from "./Pagination"
 import style from "./Pagination.module.scss"
@@ -21,7 +20,8 @@ const MyTable = defineComponent({
     actionConfig: { type: Object as PropType<IColItem> },
     isAction: { type: Boolean, default: false },
     height: { type: [String, Number] },
-    border: { type: Boolean, default: true }
+    border: { type: Boolean, default: true },
+    rowKey: String
   },
   emits: ["selectionChange", "sortChange", "headerDragend", "lock"],
   render() {
@@ -38,35 +38,17 @@ const MyTable = defineComponent({
         )
       }
     }
-    const header = (scope: any, item: IColItem) => {
-      const field = (this.tableData as Pager<any, any, any>).listField?.listShowField?.find(
-        (el) => el.fieldCode == scope.column.property
-      )
-      return (
-        <div class={style.thead}>
-          <span style="margin-right: 5px;">{item.label}</span>
-          {field && (
-            <el-icon
-              size="20"
-              color="#999"
-              title={field.isLock ? "解锁" : "锁定"}
-              onClick={() => this.$emit("lock", field)}
-            >
-              {field.isLock ? <Lock /> : <Unlock />}
-            </el-icon>
-          )}
-        </div>
-      )
-    }
+
     return [
       <el-table
-        class={style.tableBox}
+        class={this.rowKey ? undefined : style.tableBox}
         data={this.list}
         border={this.border}
         loading={this.loading}
         style={{ width: "100%", flex: this.height ? "unset" : 1 }}
         height={this.height}
         stripe
+        row-key={this.rowKey}
         onSort-change={(v: any) => this.$emit("sortChange", v)}
         onSelection-change={(v: any) => this.$emit("selectionChange", v)}
         onHeader-dragend={(n: number, o: number, col: any) => this.$emit("headerDragend", n, col)}
@@ -84,7 +66,6 @@ const MyTable = defineComponent({
               formatter={item.formatter}
               fixed={item.fixed}
               show-overflow-tooltip={item.showOverflowTooltip}
-              v-slots={{ header: (scope: ElRow) => header(scope, item) }}
             />
           )
         })}

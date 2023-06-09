@@ -2,7 +2,6 @@ export interface IPage<T> {
 	list: Array<T>;
 	total: number;
 	pages: number;
-	listField?: IListField;
 }
 
 export type TFieldType = 'normal' | 'date' | 'dict';
@@ -14,19 +13,6 @@ interface IFieldBase {
 export interface IHighQueryField extends IFieldBase {
 	dictCode: string;
 	fieldType: TFieldType;
-}
-export interface IListField {
-	entityPath: string;
-	listAllField: Array<IFieldItem>;
-	listShowField: Array<IFieldItem>;
-	requestUrl: string;
-}
-export interface IFieldItem extends IFieldBase {
-	sort?: number;
-	width?: number;
-	isLock?: number;
-	/** 本地扩展字段 */
-	type?: number;
 }
 
 export interface IPageQuery {

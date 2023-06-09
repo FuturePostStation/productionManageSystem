@@ -47,16 +47,20 @@ export default new (class ProdTaskAllocation extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.taskAllocation(scope.row.id)}>任务分配</el-button>
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.taskAllocation(scope.row.id)}>
+        任务分配
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 
   private taskAllocation(id: number) {
-
+    console.log(id)
   }
 })()

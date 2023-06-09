@@ -1,3 +1,9 @@
+/*
+ * @Author: tzx_sujie 1354146900@qq.com
+ * @Date: 2023-05-18 18:26:34
+ * @LastEditors: tzx_sujie 1354146900@qq.com
+ * @LastEditTime: 2023-06-09 21:41:50
+ */
 module.exports = {
   root: true,
   env: {
@@ -35,6 +41,7 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-useless-catch": "off",
+    "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -49,6 +56,7 @@ module.exports = {
         varsIgnorePattern: "^_"
       }
     ],
+    "@typescript-eslint/no-unnecessary-type-constraint": "off",
     // Vue
     "vue/no-v-html": "off",
     "vue/require-default-prop": "off",
@@ -64,6 +72,12 @@ module.exports = {
         },
         svg: "always",
         math: "always"
+      }
+    ],
+    "vue/no-mutating-props": [
+      "error",
+      {
+        shallowOnly: true
       }
     ],
     // Prettier

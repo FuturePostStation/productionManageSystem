@@ -47,12 +47,13 @@ export default new (class ProdManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>查看</el-button>,
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        查看
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
-
 })()

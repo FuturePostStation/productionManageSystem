@@ -11,7 +11,7 @@ import {
 } from "vue"
 
 let dataQueue: Dict = {}
-const whiteListAttr = ["self", "isCollection", "emits", "expose", "slots", "methods", "props", "computed"]
+const whiteListAttr = ["self", "emits", "expose", "slots", "methods", "props", "computed"]
 const whiteListMethods = ["constructor", "setup", "render", "created", "mounted"]
 
 export abstract class PageBase<Props = {}, PrefixedEvents = {}> {

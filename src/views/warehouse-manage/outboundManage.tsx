@@ -22,8 +22,8 @@ export default new (class OutboundManage extends PageBase {
         api={this.api}
         query={this.query}
         dialogConfig={{ editDialog: TestDialog }}
-        tableConfig={{ setColumns: this.setColumns,notEdit: true, notDel: true, actionConfig: { width: "120" } }}
-        vSlots={{ searchItems: this.searchItems , tableAction: this.tableAction}}
+        tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
+        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
   }
@@ -47,11 +47,13 @@ export default new (class OutboundManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.outbound(scope.row.id)}>出库</el-button>
+      <el-button type="primary" link onClick={() => this.outbound(scope.row.id)}>
+        出库
+      </el-button>
     ]
   }
 
   private outbound(id: number) {
-
+    console.log(id)
   }
 })()

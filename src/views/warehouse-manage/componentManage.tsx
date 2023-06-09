@@ -10,7 +10,6 @@ import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
-import { TableColumnCtx } from "element-plus"
 
 /** 部件管理 */
 export default new (class ComponentManage extends PageBase {
@@ -41,8 +40,9 @@ export default new (class ComponentManage extends PageBase {
     Object.assign(cols, {
       fieldName: { label: "字段名称" },
       fieldCode: {
-        label: "字段标识", formatter: (row: ITempRes, col: TableColumnCtx<ITempRes>, val: string, index: number) => {
-          return 1;
+        label: "字段标识",
+        formatter: () => {
+          return 1
         }
       },
       field1: { label: "字段标识" },
@@ -52,11 +52,13 @@ export default new (class ComponentManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>查看</el-button>,
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        查看
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 })()

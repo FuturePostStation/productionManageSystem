@@ -1,4 +1,4 @@
-import { IExportTemp, IHighQueryField, IListField, IPage } from "./Interface"
+import { IPage } from "./Interface"
 export type MethodType<Q, R> = (query: Q) => Promise<IPage<R>>
 
 /**
@@ -16,8 +16,8 @@ export class Pager<T extends any, R, Q> {
   private _items: Array<R> = []
   private infinite?: boolean
   public readonly api: T
-  public _listField!: IListField
-  /**获取或设置 每页条数 默认20 */
+
+  /**获取或设置 每页条数 默认10 */
   public size = 10
   /**异常拦截器 如果返回true则将异常拦截 */
   public onError?: (err: Error) => boolean | void
@@ -83,9 +83,6 @@ export class Pager<T extends any, R, Q> {
     return this._items
   }
 
-  public get listField() {
-    return this._listField || {}
-  }
   /**
    * 上一页
    * @throws 可能抛出HTTP异常 如果onError绑定了回调并返回true则不会接收到异常
@@ -128,13 +125,13 @@ export class Pager<T extends any, R, Q> {
     return this._refresh(true)
   }
 
-  private async _refresh(reinit = false) {
+  private async _refresh(isRefresh = false) {
     this._loading = true
     try {
-      if (reinit) this._currentPage = 1
-      let params = () => {
+      if (isRefresh) this._currentPage = 1
+      const params = () => {
         if (this.param) {
-          let p = this.param() as any
+          const p = this.param() as any
           p.page = this.currentPage
           p.limit = this.size
           return p
@@ -145,12 +142,11 @@ export class Pager<T extends any, R, Q> {
           }
         }
       }
-      let res = await this.method(params())
+      const res = await this.method(params())
       if (this.pages === this.currentPage) this.onLastPage && this.onLastPage(this.currentPage)
       this._total = res.total
       this._pages = res.pages
-      if (res.listField) this._listField = res.listField
-      if (this.infinite && !reinit) {
+      if (this.infinite && !isRefresh) {
         this._items.push(...res.list)
       } else {
         this._items = res.list

@@ -19,6 +19,7 @@ export default new (class Upload extends PageBase<IProps, IEvent> {
     previewList: { type: Array, default: () => [] },
     postHandler: Function as PropType<(mime: string) => Promise<any>>
   }
+  public emits: (keyof IEvent)[] = ["change", "clear", "success", "update:modelValue"]
 
   private upload: InstanceType<typeof ElUpload> = null as any
   private curFile: File = null as any
@@ -174,7 +175,6 @@ export default new (class Upload extends PageBase<IProps, IEvent> {
     this.localMime = ""
     this.$emit("clear")
     this.$emit("update:modelValue", "")
-    this.$emit("scan", null)
     this.curFile = null as any
   }
 })()
@@ -192,7 +192,6 @@ interface IProps {
 interface IEvent {
   "update:modelValue": (val: any) => void
   change: (val: Array<UploadMedia>) => void
-  scan: (val: any) => void
   clear: () => void
   success: (file: File) => void
 }
