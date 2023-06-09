@@ -2,7 +2,7 @@
  * @Author: tzx_sujie 1354146900@qq.com
  * @Date: 2023-05-16 19:43:35
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-18 11:49:14
+ * @LastEditTime: 2023-06-09 21:20:52
  */
 declare module "*.vue" {
   import { DefineComponent } from "vue"
@@ -21,4 +21,13 @@ declare module 'vue/types/vue' {
   interface Vue {
     $router: VueRouter
   }
+}
+
+declare global {
+	namespace JSX {
+		interface IntrinsicElements extends NativeElements {
+			'v-slots': string;
+      slot: string
+		}
+	}
 }

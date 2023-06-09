@@ -28,7 +28,7 @@ export default defineComponent({
       default: ""
     }
   },
-  setup(props) {
+  setup() {
     const menuForm = ref<MenuForm>({
       menuName: "",
       menuType: "",
