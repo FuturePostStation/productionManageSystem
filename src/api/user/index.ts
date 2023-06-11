@@ -2,20 +2,13 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-19 09:58:34
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-19 10:02:41
- */
-/*
- * @文件描述: 登录
- * @作者: PWL
- * @Date: 2019-01-16 16:57:57
- * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-19 17:09:24
+ * LastEditTime: 2023-06-11 15:16:01
  */
 import { request } from "@/utils/service"
 // 登录
 export function userLogin(params: Dict) {
   return request({
-    url: "/wb/sso/v1/login",
+    url: "/api/oauth/v1/login",
     // url: "pj/sso/login",
     method: "POST",
     data: params
@@ -51,7 +44,7 @@ interface KeyCodeResponse {
 // AES的Key和偏移量以及RSA的公钥
 export function getKeyCode() {
   return request<KeyCodeResponse>({
-    url: "/wb/sso/v1/getKeyCode",
+    url: "/api/oauth/v1/getKeyCode",
     // url: "pj/sso/getKeyCode",
     method: "GET"
   })
@@ -60,7 +53,7 @@ export function getKeyCode() {
 // 验证码
 export function getCode(params: string) {
   return request<Blob>({
-    url: "/wb/sso/v1/code?uuid=" + params,
+    url: "/api/oauth/v1/code?uuid=" + params,
     // url: "pj/sso/code",
     method: "GET",
     responseType: "blob"

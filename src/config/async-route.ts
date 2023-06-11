@@ -1,3 +1,9 @@
+/**
+ * Author: 从前慢 330109371@qq.com
+ * Date: 2023-05-16 15:28:36
+ * LastEditors: 从前慢 330109371@qq.com
+ * LastEditTime: 2023-06-11 15:57:50
+ */
 /** 动态路由配置 */
 interface IAsyncRouteSettings {
   /**
@@ -14,7 +20,7 @@ interface IAsyncRouteSettings {
 }
 
 const asyncRouteSettings: IAsyncRouteSettings = {
-  open: true,
+  open: false,
   defaultRoles: ["DEFAULT_ROLE"]
 }
 

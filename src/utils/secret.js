@@ -1,7 +1,13 @@
+/**
+ * Author: 从前慢 330109371@qq.com
+ * Date: 2023-05-19 09:28:43
+ * LastEditors: 从前慢 330109371@qq.com
+ * LastEditTime: 2023-06-11 15:18:05
+ */
 /*
  * @文件描述: 加密处理 AES+RSA
- * @作者: 作者
- * @Date: 2019-02-13 17:34:27
+ * @作者: 从前慢
+ * @Date: 2023-06-09 17:34:27
  * @LastEditors: Please set LastEditors
  * @LastEditTime: 2020-12-28 16:04:05
  *
@@ -9,10 +15,11 @@
  * 加密：前端数据 => AES加密 => 后台RSA加密
  * 解密：后台给加密的数据 => RSA解密（key通过接口获取） => AES解密
  */
-import store from "@/store"
-const { aesIV, aesPublic, rsaPublic } = store && store.state && store.state.user
+import { useUserStore } from "@/store/modules/user"
+import CryptoJS from "crypto-js" // 引用AES源码js
+import JSEncrypt from "jsencrypt/bin/jsencrypt.min"
+const { aesIV, aesPublic, rsaPublic } = useUserStore
 
-const CryptoJS = require("crypto-js") // 引用AES源码js
 // Base64加密
 export function Base64Encrypt(data) {
   return CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(data))

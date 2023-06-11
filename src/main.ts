@@ -1,3 +1,9 @@
+/**
+ * Author: 从前慢 330109371@qq.com
+ * Date: 2023-05-16 15:28:36
+ * LastEditors: 从前慢 330109371@qq.com
+ * LastEditTime: 2023-06-11 15:15:55
+ */
 // core
 import { createApp } from "vue"
 import App from "@/App.vue"

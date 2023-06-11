@@ -28,7 +28,7 @@ export default defineComponent({
       default: ""
     }
   },
-  setup(props) {
+  setup() {
     const menuForm = ref<MenuForm>({
       menuName: "",
       menuType: "",
@@ -47,7 +47,6 @@ export default defineComponent({
 
     const getMenuTypes = () => {
       const types: MenuType[] = []
-
       // add logic to populate types array
 
       return types
@@ -55,7 +54,6 @@ export default defineComponent({
 
     const getMenuLevels = () => {
       const levels: MenuType[] = []
-
       // add logic to populate levels array
 
       return levels

@@ -8,7 +8,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:01:35
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-18 09:13:42
+ * LastEditTime: 2023-06-11 15:35:15
  */
 import { type RouteRecordRaw } from "vue-router"
 const Layout = () => import("@/layout/index.vue")
