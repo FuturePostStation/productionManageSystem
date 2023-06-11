@@ -5,24 +5,23 @@ import { ElMessage, ElMessageBox } from "element-plus"
 import { Pager } from "./Pager"
 
 export class CommonHandler<T extends ICommonApi, R, Q> {
+  constructor(api: T, pager?: Pager<T, R, Q>) {
+    this.api = api
+    this.pager = pager
+  }
   private api!: T
   private pager?: Pager<T, R, Q>
   private _loadStatus = LoadStatus.loading
   private _error = null
+  public onStatusChange?: (status: LoadStatus) => void
+  public onError?: (err: Error) => boolean | void
 
   public get loadStatus() {
     return this._loadStatus
   }
+
   public get error() {
     return this._error
-  }
-
-  public onStatusChange?: (status: LoadStatus) => void
-  public onError?: (err: Error) => boolean | void
-
-  constructor(api: T, pager?: Pager<T, R, Q>) {
-    this.api = api
-    this.pager = pager
   }
 
   /**
@@ -40,7 +39,7 @@ export class CommonHandler<T extends ICommonApi, R, Q> {
   public confirmAction(str: string, apiMethod: Function, callback: Function, isRefresh: boolean): void
   public confirmAction(str: string, param: string | Function, exec?: Function, isRefresh = true) {
     ElMessageBox.confirm(str, "警告")
-      .then(async (res) => {
+      .then(async () => {
         const loading = new MyLoading()
         try {
           if (typeof param == "function") {
@@ -67,15 +66,16 @@ export class CommonHandler<T extends ICommonApi, R, Q> {
     try {
       if (this.pager) {
         await this.pager.refresh()
+        if (typeof apiMethod === "function") await apiMethod()
         if (this.pager.currentPage == 1)
           this._loadStatus = this.pager.items.length ? LoadStatus.success : LoadStatus.empty
-      } else if (typeof apiMethod == "function") {
-        await apiMethod()
-        this._loadStatus = LoadStatus.success
+      } else {
+        if (typeof apiMethod == "function") {
+          await apiMethod()
+          this._loadStatus = LoadStatus.success
+        }
       }
-      this.pager && arguments.length == 1 && typeof apiMethod == "function"
-        ? apiMethod()
-        : typeof callback == "function" && callback()
+      typeof callback == "function" && callback()
     } catch (error) {
       if (this.pager) {
         if (this.pager.currentPage == 1) {

@@ -47,16 +47,20 @@ export default new (class PurchaseOrderManage extends PageBase {
 
   private tableAction(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>详情</el-button>,
-      <el-button type="primary" link onClick={() => this.make(scope.row.id)}>制作</el-button>
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        详情
+      </el-button>,
+      <el-button type="primary" link onClick={() => this.make(scope.row.id)}>
+        制作
+      </el-button>
     ]
   }
 
   private details(id: number) {
-
+    console.log(id)
   }
 
   private make(id: number) {
-
+    console.log(id)
   }
 })()

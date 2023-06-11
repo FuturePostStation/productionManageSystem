@@ -1,6 +1,6 @@
 import { CommonApi } from "@/api/tsx/CommonApi"
 import { CommonHandler } from "@/api/tsx/CommonHander"
-import { IFieldItem, IPageSort } from "@/api/tsx/Interface"
+import { IPageSort } from "@/api/tsx/Interface"
 import { MethodType, Pager } from "@/api/tsx/Pager"
 import MyTable, { IColItem } from "@/components/tsx/MyTable"
 import { DialogBase, IDialogConfig } from "@/components/tsx/dialog/DialogBase"
@@ -36,13 +36,13 @@ export default new (class ListView<
     editHandler: Function,
     notAdd: Boolean
   }
+  public expose: (string | number)[] = ["refresh", "handler"]
+  public emits: (keyof IEvent)[] = ["selectionChange"]
 
   private pager: Pager<CommonApi<Add, Res, Query>, Res, Query> = null as any
   public handler: CommonHandler<CommonApi<Add, Res, Query>, Res, Query> = null as any
   private columns: Dict<IColItem> = {}
   private buttonSize = "default"
-
-  public expose: (string | number)[] = ["refresh", "handler"]
 
   public async created() {
     this.pager = new Pager(this.api, this.method || this.api.page, () => this.query)
@@ -116,16 +116,9 @@ export default new (class ListView<
   private buildCol() {
     this.columns = {}
     if (this.tableConfig?.setColumns) {
-      this.tableConfig.setColumns(this.columns, [])
+      this.tableConfig.setColumns(this.columns)
     } else {
-      this.pager.listField.listShowField?.forEach((item) => {
-        this.columns[item.fieldCode] = {
-          label: item.fieldName,
-          showOverflowTooltip: true,
-          width: item.width?.toString(),
-          fixed: item.isLock ? "left" : undefined
-        }
-      })
+      this.$alert("请配置表头")
     }
   }
 
@@ -197,7 +190,7 @@ interface IProps<Q> {
     /** 默认显示编辑删除按钮 */
     notEdit?: boolean
     notDel?: boolean
-    setColumns?: (colums: Dict<IColItem>, listField: IFieldItem[]) => void
+    setColumns?: (colums: Dict<IColItem>) => void
     actionConfig?: IColItem
   }
 

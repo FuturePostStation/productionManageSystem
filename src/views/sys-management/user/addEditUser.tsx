@@ -5,6 +5,7 @@
  * LastEditTime: 2023-05-23 10:35:30
  */
 import router from "@/router"
+import { ArrowDown } from "@element-plus/icons-vue"
 import { PropType, Ref, defineComponent, ref } from "vue"
 
 export interface User {
@@ -40,7 +41,7 @@ const MyComponent = defineComponent({
     }
     // 其他属性
   },
-  setup(props) {
+  setup() {
     // 用户信息
     const user: Ref<User> = ref({
       id: 0,
@@ -117,11 +118,15 @@ const MyComponent = defineComponent({
                 value={this.user.deptName}
                 placeholder="组织"
                 onFocus={() => this.handleSelect("dilogDept", false)}
-              >
-                <i slot="suffix" style={{ display: "flex", alignItems: "center" }}>
-                  <svg-icon icon-class="formOrg" />
-                </i>
-              </el-input>
+                suffix-icon={ArrowDown}
+                // v-slots={{
+                //   suffix: () => (
+                //     <i style={{ display: "flex", alignItems: "center" }}>
+                //       <svg-icon icon-class="formOrg" />
+                //     </i>
+                //   )
+                // }}
+              ></el-input>
             </el-form-item>
             <el-form-item label="性别" className="zh-page-form_formitem_5" prop="sex">
               <el-select value={this.user.sex} placeholder="性别">

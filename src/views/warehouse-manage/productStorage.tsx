@@ -44,6 +44,4 @@ export default new (class ProductStorage extends PageBase {
       field2: { label: "字段标识" }
     })
   }
-
-  
 })()
