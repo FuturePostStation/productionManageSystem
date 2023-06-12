@@ -113,7 +113,7 @@ export const useUserStore = defineStore("user", () => {
     const newToken = "token-" + role
     token.value = newToken
     setToken(newToken)
-    await getInfo()
+    // await getInfo()
     permissionStore.setRoutes(roles.value)
     resetRouter()
     permissionStore.dynamicRoutes.forEach((item: RouteRecordRaw) => {
