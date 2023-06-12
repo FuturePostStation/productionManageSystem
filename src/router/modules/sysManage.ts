@@ -2,7 +2,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-22 15:25:34
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-23 11:13:26
+ * LastEditTime: 2023-06-12 14:45:04
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -13,7 +13,7 @@ export default [
     name: "SysManagement",
     meta: {
       title: "后台管理",
-      elIcon: "Grid",
+      elIcon: "Setting",
       sort: 6
     },
     children: [

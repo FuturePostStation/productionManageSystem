@@ -8,7 +8,7 @@
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 16:03:37
  * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 17:14:45
+ * LastEditTime: 2023-06-12 14:47:33
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -19,7 +19,7 @@ export default [
     name: "WarehouseManage",
     meta: {
       title: "仓库管理",
-      elIcon: "Grid",
+      elIcon: "House",
       sort: 4
     },
     children: [
