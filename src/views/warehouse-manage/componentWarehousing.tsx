@@ -1,20 +1,23 @@
 /*
  * @Author: tzx_sujie 1354146900@qq.com
- * @Date: 2023-05-17 15:18:53
+ * @Date: 2023-05-17 15:18:54
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:57:25
+ * @LastEditTime: 2023-05-17 16:57:13
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import ComponentWarehousingApi, {
+  IComponentWarehousingQuery,
+  IComponentWarehousingRes
+} from "@/api/tsx/warehouse-manage/componentWarehousingApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
 
-/** 出库管理 */
-export default new (class OutboundManage extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+/** 部件入库管理 */
+export default new (class ComponentWarehousing extends PageBase {
+  private api = new ComponentWarehousingApi()
+  private query: IComponentWarehousingQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -22,7 +25,7 @@ export default new (class OutboundManage extends PageBase {
         api={this.api}
         query={this.query}
         dialogConfig={{ editDialog: TestDialog }}
-        tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
+        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "160" } }}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
@@ -39,21 +42,26 @@ export default new (class OutboundManage extends PageBase {
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
       fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
+      fieldCode: {
+        label: "字段标识",
+        formatter: () => {
+          return 1
+        }
+      },
       field1: { label: "字段标识" },
       field2: { label: "字段标识" }
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IComponentWarehousingRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.outbound(scope.row.id)}>
-        出库
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        查看
       </el-button>
     ]
   }
 
-  private outbound(id: number) {
+  private details(id: number) {
     console.log(id)
   }
 })()

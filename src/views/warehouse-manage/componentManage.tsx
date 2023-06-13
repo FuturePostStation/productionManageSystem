@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-17 16:57:13
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import ComponentManageApi, {
+  IComponentManageQuery,
+  IComponentManageRes
+} from "@/api/tsx/warehouse-manage/componentManageApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import TestDialog from "@/components/tsx/dialog/TestDialog"
 
 /** 部件管理 */
 export default new (class ComponentManage extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new ComponentManageApi()
+  private query: IComponentManageQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -50,7 +53,7 @@ export default new (class ComponentManage extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IComponentManageRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         查看

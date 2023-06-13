@@ -42,20 +42,20 @@ export default [
         }
       },
       {
-        path: "warehousingManage",
-        component: () => import("@/views/warehouse-manage/warehousingManage"),
-        name: "WarehousingManage",
+        path: "materialOutbound",
+        component: () => import("@/views/warehouse-manage/materialOutbound"),
+        name: "MaterialOutbound",
         meta: {
-          title: "入库管理",
+          title: "物料出库管理",
           keepAlive: true
         }
       },
       {
-        path: "outboundManage",
-        component: () => import("@/views/warehouse-manage/outboundManage"),
-        name: "OutboundManage",
+        path: "materialWarehousing",
+        component: () => import("@/views/warehouse-manage/materialWarehousing"),
+        name: "MaterialWarehousing",
         meta: {
-          title: "出库管理",
+          title: "物料入库管理",
           keepAlive: true
         }
       },
@@ -69,11 +69,20 @@ export default [
         }
       },
       {
-        path: "productStorage",
-        component: () => import("@/views/warehouse-manage/productStorage"),
-        name: "ProductStorage",
+        path: "prodOutbound",
+        component: () => import("@/views/warehouse-manage/prodOutbound"),
+        name: "ProdOutbound",
         meta: {
-          title: "产品入库",
+          title: "产品出库管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "prodWarehousing",
+        component: () => import("@/views/warehouse-manage/prodWarehousing"),
+        name: "ProdWarehousing",
+        meta: {
+          title: "产品入库管理",
           keepAlive: true
         }
       },
@@ -87,11 +96,20 @@ export default [
         }
       },
       {
-        path: "partsWarehousing",
-        component: () => import("@/views/warehouse-manage/partsWarehousing"),
-        name: "PartsWarehousing",
+        path: "componentOutbound",
+        component: () => import("@/views/warehouse-manage/componentOutbound"),
+        name: "ComponentOutbound",
         meta: {
-          title: "部件入库",
+          title: "部件出库管理",
+          keepAlive: true
+        }
+      },
+      {
+        path: "componentWarehousing",
+        component: () => import("@/views/warehouse-manage/componentWarehousing"),
+        name: "ComponentWarehousing",
+        meta: {
+          title: "部件入库管理",
           keepAlive: true
         }
       }

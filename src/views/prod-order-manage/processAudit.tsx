@@ -5,15 +5,15 @@
  * @LastEditTime: 2023-05-19 16:07:31
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import PorocessAuditApi, { IPorocessAuditQuery, IPorocessAuditRes } from "@/api/tsx/prod-order-manage/porocessAuditApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 
 /** 工艺审核 */
 export default new (class ProcessAudit extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new PorocessAuditApi()
+  private query: IPorocessAuditQuery = {}
   private selected: AnyArray = []
 
   public render(): JSX.Element {
@@ -60,7 +60,7 @@ export default new (class ProcessAudit extends PageBase {
     ]
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IPorocessAuditRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         详情
@@ -86,7 +86,9 @@ export default new (class ProcessAudit extends PageBase {
     if (this.selected.length == 0) return this.$message.error("当前还未选择提交数据")
   }
 
-  private exportExcel() {}
+  private exportExcel() {
+    console.log("exportExcel")
+  }
 
   private details(id: number) {
     console.log(id)

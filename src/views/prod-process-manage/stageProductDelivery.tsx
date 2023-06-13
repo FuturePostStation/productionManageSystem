@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-19 15:28:25
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import StageProductDeliveryApi, {
+  IStageProductDeliveryQuery,
+  IStageProductDeliveryRes
+} from "@/api/tsx/prod-process-manage/stageProductDeliveryApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import router from "@/router"
 
 /** 阶段产品交付 */
 export default new (class StageProductDelivery extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new StageProductDeliveryApi()
+  private query: IStageProductDeliveryQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +48,7 @@ export default new (class StageProductDelivery extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IStageProductDeliveryRes>) {
     return [
       <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
         详情

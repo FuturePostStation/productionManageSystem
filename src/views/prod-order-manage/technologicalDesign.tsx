@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-19 16:34:57
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import TechnologicalDesignApi, {
+  ITechnologicalDesignQuery,
+  ITechnologicalDesignRes
+} from "@/api/tsx/prod-order-manage/technologicalDesignApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import router from "@/router"
 
 /** 工艺设计 */
 export default new (class TechnologicalDesign extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new TechnologicalDesignApi()
+  private query: ITechnologicalDesignQuery = {}
   private selected: AnyArray = []
 
   public render(): JSX.Element {
@@ -61,7 +64,7 @@ export default new (class TechnologicalDesign extends PageBase {
     ]
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<ITechnologicalDesignRes>) {
     return [
       <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
         详情
@@ -80,7 +83,9 @@ export default new (class TechnologicalDesign extends PageBase {
     if (this.selected.length == 0) return this.$message.error("当前还未选择提交数据")
   }
 
-  private exportExcel() {}
+  private exportExcel() {
+    console.log("export")
+  }
 
   private toDetails(id?: number, type?: TPageActType) {
     router.push({ name: "EditDesign", params: { type: type || "add", id: id } })

@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-17 16:55:39
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import MaterialCollectionApi, {
+  IMaterialCollectionQuery,
+  IMaterialCollectionRes
+} from "@/api/tsx/prod-process-manage/materialCollectionApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import TestDialog from "@/components/tsx/dialog/TestDialog"
 
 /** 物料领取 */
 export default new (class MaterialCollection extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new MaterialCollectionApi()
+  private query: IMaterialCollectionQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +48,7 @@ export default new (class MaterialCollection extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IMaterialCollectionRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         详情

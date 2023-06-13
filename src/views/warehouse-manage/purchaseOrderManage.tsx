@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-05-17 16:57:40
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import PurchaseOrderApi, { IPurchaseOrderQuery, IPurchaseOrderRes } from "@/api/tsx/warehouse-manage/purchaseOrderApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +13,8 @@ import TestDialog from "@/components/tsx/dialog/TestDialog"
 
 /** 采购订单管理 */
 export default new (class PurchaseOrderManage extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new PurchaseOrderApi()
+  private query: IPurchaseOrderQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +45,7 @@ export default new (class PurchaseOrderManage extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IPurchaseOrderRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         详情

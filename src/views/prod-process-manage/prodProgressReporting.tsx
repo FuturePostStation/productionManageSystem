@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-19 15:26:22
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import ProdProgressReportingApi, {
+  IProdProgressReportingQuery,
+  IProdProgressReportingRes
+} from "@/api/tsx/prod-process-manage/prodProgressReportingApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import router from "@/router"
 
 /** 生产进度填报 */
 export default new (class ProdProgressReporting extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new ProdProgressReportingApi()
+  private query: IProdProgressReportingQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +48,7 @@ export default new (class ProdProgressReporting extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IProdProgressReportingRes>) {
     return [
       <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
         详情

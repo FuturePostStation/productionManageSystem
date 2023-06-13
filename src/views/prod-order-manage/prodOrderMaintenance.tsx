@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-17 16:42:14
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import ProdOrderMaintenanceApi, {
+  IProdOrderMaintenanceQuery,
+  IProdOrderMaintenanceRes
+} from "@/api/tsx/prod-order-manage/prodOrderMaintenanceApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import TestDialog from "@/components/tsx/dialog/TestDialog"
 
 /** 生产订单维护 */
 export default new (class ProdOrderMaintenance extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new ProdOrderMaintenanceApi()
+  private query: IProdOrderMaintenanceQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +48,7 @@ export default new (class ProdOrderMaintenance extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IProdOrderMaintenanceRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         详情

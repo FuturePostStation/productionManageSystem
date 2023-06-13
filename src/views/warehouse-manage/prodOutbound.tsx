@@ -1,20 +1,20 @@
 /*
  * @Author: tzx_sujie 1354146900@qq.com
- * @Date: 2023-05-17 15:18:54
+ * @Date: 2023-05-17 15:18:53
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:57:37
+ * @LastEditTime: 2023-05-17 16:57:35
  */
 
-import TempApi, { ITempQuery } from "@/api/tsx/ListTestApi"
+import ProdOutboundApi, { IProdOutboundQuery, IProdOutboundRes } from "@/api/tsx/warehouse-manage/prodOutboundApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
 
-/** 产品入库 */
-export default new (class ProductStorage extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+/** 产品出库管理 */
+export default new (class ProdOutbound extends PageBase {
+  private api = new ProdOutboundApi()
+  private query: IProdOutboundQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -22,8 +22,8 @@ export default new (class ProductStorage extends PageBase {
         api={this.api}
         query={this.query}
         dialogConfig={{ editDialog: TestDialog }}
-        tableConfig={{ setColumns: this.setColumns, notEdit: true, actionConfig: { width: "120" } }}
-        vSlots={{ searchItems: this.searchItems }}
+        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "160" } }}
+        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
   }
@@ -43,5 +43,17 @@ export default new (class ProductStorage extends PageBase {
       field1: { label: "字段标识" },
       field2: { label: "字段标识" }
     })
+  }
+
+  private tableAction(scope: ElRow<IProdOutboundRes>) {
+    return [
+      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+        查看
+      </el-button>
+    ]
+  }
+
+  private details(id: number) {
+    console.log(id)
   }
 })()

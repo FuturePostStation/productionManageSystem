@@ -1,20 +1,24 @@
 /*
  * @Author: tzx_sujie 1354146900@qq.com
- * @Date: 2023-05-17 15:18:53
+ * @Date: 2023-05-17 15:18:52
  * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-17 16:57:35
+ * @LastEditTime: 2023-05-17 16:57:21
  */
 
-import ProdManageApi, { IProdManageQuery, IProdManageRes } from "@/api/tsx/warehouse-manage/prodManageApi"
+import MaterialOutboundApi, {
+  IMaterialOutboundQuery,
+  IMaterialOutboundRes
+} from "@/api/tsx/warehouse-manage/materialOutboundApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
+import SelectDict from "@/components/tsx/SelectDict"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
 
-/** 产品管理 */
-export default new (class ProdManage extends PageBase {
-  private api = new ProdManageApi()
-  private query: IProdManageQuery = {}
+/** 物料出库管理 */
+export default new (class MaterialOutbound extends PageBase {
+  private api = new MaterialOutboundApi()
+  private query: IMaterialOutboundQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -30,7 +34,16 @@ export default new (class ProdManage extends PageBase {
 
   private searchItems() {
     return [
-      <el-form-item label="名称">
+      <el-form-item label="物料名称">
+        <el-input v-model={this.query.name}></el-input>
+      </el-form-item>,
+      <el-form-item label="供应商">
+        <SelectDict v-model={this.query.name} dictCode="123" />
+      </el-form-item>,
+      <el-form-item label="入库单号">
+        <el-input v-model={this.query.name}></el-input>
+      </el-form-item>,
+      <el-form-item label="状态">
         <el-input v-model={this.query.name}></el-input>
       </el-form-item>
     ]
@@ -45,7 +58,7 @@ export default new (class ProdManage extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<IProdManageRes>) {
+  private tableAction(scope: ElRow<IMaterialOutboundRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         查看

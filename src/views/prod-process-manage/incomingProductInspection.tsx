@@ -5,7 +5,10 @@
  * @LastEditTime: 2023-05-19 14:52:54
  */
 
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import IncomingProductInspectionApi, {
+  IIncomingProductInspectionQuery,
+  IIncomingProductInspectionRes
+} from "@/api/tsx/prod-process-manage/incomingProductInspectionApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -13,8 +16,8 @@ import router from "@/router"
 
 /** 入场产品检验 */
 export default new (class IncomingProductInspection extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+  private api = new IncomingProductInspectionApi()
+  private query: IIncomingProductInspectionQuery = {}
 
   public render(): JSX.Element {
     return (
@@ -45,7 +48,7 @@ export default new (class IncomingProductInspection extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IIncomingProductInspectionRes>) {
     return [
       <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
         详情
