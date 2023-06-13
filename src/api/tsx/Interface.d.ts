@@ -1,22 +1,17 @@
 export interface IPage<T> {
-	list: Array<T>;
-	total: number;
-	pages: number;
+	data: {
+		records: number,
+		rows: Array<T>
+		total: number
+	};
+	msg: string;
+	stat: number;
 }
 
 export type TFieldType = 'normal' | 'date' | 'dict';
 
-interface IFieldBase {
-	fieldCode: string;
-	fieldName: string;
-}
-export interface IHighQueryField extends IFieldBase {
-	dictCode: string;
-	fieldType: TFieldType;
-}
-
 export interface IPageQuery {
-	page?: number;
+	offset?: number;
 	limit?: number;
 }
 export interface IPageSort extends IPageQuery {
@@ -29,10 +24,4 @@ export interface IPageSort extends IPageQuery {
 export interface ILabelValue {
 	label: string;
 	value: string;
-}
-
-export interface IExportTemp {
-	id: string;
-	itemText: string;
-	requestUrl: string;
 }

@@ -4,7 +4,10 @@
  * LastEditors: 从前慢 330109371@qq.com
  * LastEditTime: 2023-05-17 14:38:43
  */
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import MaterialArchivingApi, {
+  IMaterialArchivingQuery,
+  IMaterialArchivingRes
+} from "@/api/tsx/sales-order-management/materialArchivingApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -12,9 +15,9 @@ import router from "@/router"
 
 /** 交付材料归档 */
 export default new (class MaterialArchiving extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
-  private selected: Array<ITempRes> = []
+  private api = new MaterialArchivingApi()
+  private query: IMaterialArchivingQuery = {}
+  private selected: Array<IMaterialArchivingRes> = []
 
   public render(): JSX.Element {
     return (
@@ -37,7 +40,7 @@ export default new (class MaterialArchiving extends PageBase {
     ]
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IMaterialArchivingRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id, "look")}>
         详情
@@ -57,7 +60,7 @@ export default new (class MaterialArchiving extends PageBase {
     })
   }
 
-  private onSelectionChange(v: Array<ITempRes>) {
+  private onSelectionChange(v: Array<IMaterialArchivingRes>) {
     this.selected = v
   }
 

@@ -4,15 +4,15 @@
  * LastEditors: 从前慢 330109371@qq.com
  * LastEditTime: 2023-05-17 14:33:38
  */
-import TempApi, { ITempQuery } from "@/api/tsx/ListTestApi"
+import ExamineApi, { IExamineQuery } from "@/api/tsx/sales-order-management/examineApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import TestDialog from "@/components/tsx/dialog/TestDialog"
 
-export default new (class ListTest extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
+export default new (class Examine extends PageBase {
+  private api = new ExamineApi()
+  private query: IExamineQuery = {}
 
   public render(): JSX.Element {
     return (

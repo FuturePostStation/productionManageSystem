@@ -20,12 +20,16 @@ export default class TempApi extends CommonApi<ITempAdd, ITempRes, ITempQuery> {
 
   public async page() {
     return {
-      total: 2,
-      pages: 1,
-      list: [
-        { fieldName: "asds", fieldCode: "sfsd", id: 1 },
-        { fieldName: "asds2112", fieldCode: "sfsasdd", id: 2 }
-      ]
+      msg: "",
+      stat: 1,
+      data: {
+        records: 1,
+        total: 1,
+        rows: [
+          { fieldName: "asds", fieldCode: "sfsd", id: 1 },
+          { fieldName: "asds2112", fieldCode: "sfsasdd", id: 2 }
+        ]
+      }
     }
     // return request<IPage<ITempRes>>({ url: `${this.urlPrefix}/page`, method: "get", params })
   }

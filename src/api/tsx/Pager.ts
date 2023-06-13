@@ -132,27 +132,28 @@ export class Pager<T extends any, R, Q> {
       const params = () => {
         if (this.param) {
           const p = this.param() as any
-          p.page = this.currentPage
+          p.offset = this.currentPage
           p.limit = this.size
           return p
         } else {
           return {
-            page: this.currentPage,
+            offset: this.currentPage,
             limit: this.size
           }
         }
       }
       const res = await this.method(params())
+      console.log(res)
       if (this.pages === this.currentPage) this.onLastPage && this.onLastPage(this.currentPage)
-      this._total = res.total
-      this._pages = res.pages
+      this._total = res.data.records
+      this._pages = res.data.total
       if (this.infinite && !isRefresh) {
-        this._items.push(...res.list)
+        this._items.push(...res.data.rows)
       } else {
-        this._items = res.list
+        this._items = res.data.rows
       }
-      this.onLoad && this.onLoad(res.list)
-      return res.list
+      this.onLoad && this.onLoad(res.data.rows)
+      return res.data
     } catch (error) {
       console.log("pager err", error)
       this._currentPage = this.wrongBeforePage

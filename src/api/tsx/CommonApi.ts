@@ -21,10 +21,10 @@ export class CommonApi<AddT, RetT = AddT, Query = IPageSort> {
   }
 
   public details(id: string) {
-    return request<RetT>({ url: `${this.urlPrefix}/${id}`, method: "get", params: { id } })
+    return request<RetT>({ url: `${this.urlPrefix}Info/${id}`, method: "get", params: { id } })
   }
 
   public page(params?: Query) {
-    return request<IPage<RetT>>({ url: `${this.urlPrefix}/page`, method: "get", params })
+    return request<IPage<RetT>>({ url: `${this.urlPrefix}/page`, method: "post", data: params })
   }
 }

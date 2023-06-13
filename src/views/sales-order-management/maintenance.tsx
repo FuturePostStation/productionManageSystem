@@ -1,16 +1,10 @@
-/*
- * @Author: tzx_sujie 1354146900@qq.com
- * @Date: 2023-05-17 15:03:52
- * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-05-18 15:28:24
- */
 /**
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-17 10:37:47
  * LastEditors: 从前慢 330109371@qq.com
  * LastEditTime: 2023-05-18 12:20:01
  */
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import MaintenanceApi, { IMaintenanceQuery, IMaintenanceRes } from "@/api/tsx/sales-order-management/maintenanceApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -18,9 +12,9 @@ import router from "@/router"
 
 /** 销售订单维护 */
 export default new (class Maintenance extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
-  private selected: Array<ITempRes> = []
+  private api = new MaintenanceApi()
+  private query: IMaintenanceQuery = {}
+  private selected: Array<IMaintenanceRes> = []
 
   public render(): JSX.Element {
     return (
@@ -44,7 +38,7 @@ export default new (class Maintenance extends PageBase {
     ]
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IMaintenanceRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
         详情
@@ -80,11 +74,11 @@ export default new (class Maintenance extends PageBase {
     if (this.selected.length == 0) return this.$message.error("当前还未选择撤回数据")
   }
 
-  private onSelectionChange(v: Array<ITempRes>) {
+  private onSelectionChange(v: Array<IMaintenanceRes>) {
     this.selected = v
   }
 
-  private addOrEdit(item: ITempRes) {
+  private addOrEdit(item: IMaintenanceRes) {
     const params: Dict = { pageType: "order", type: item ? "edit" : "add" }
     if (item) params.id = item.id
     router.push({ name: "EditMaintenance", params })

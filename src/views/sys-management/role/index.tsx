@@ -8,22 +8,20 @@ import TempApi, { ITempQuery } from "@/api/tsx/ListTestApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import MyComponent from "./addEditRole"
+import RoleDialog from "./addEditRole"
 
 export default new (class ListTest extends PageBase {
   private api = new TempApi()
   private query: ITempQuery = {}
   public render(): JSX.Element {
     return (
-      <div>
-        <ListView
-          api={this.api}
-          query={this.query}
-          addHandler={this.toDetails}
-          tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
-          vSlots={{ searchItems: this.searchItems }}
-        />
-      </div>
+      <ListView
+        api={this.api}
+        query={this.query}
+        dialogConfig={{ editDialog: RoleDialog }}
+        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
+        vSlots={{ searchItems: this.searchItems }}
+      />
     )
   }
 

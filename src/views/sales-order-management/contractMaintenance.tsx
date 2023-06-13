@@ -10,7 +10,10 @@
  * LastEditors: 从前慢 330109371@qq.com
  * LastEditTime: 2023-05-23 11:21:31
  */
-import TempApi, { ITempQuery, ITempRes } from "@/api/tsx/ListTestApi"
+import ContractMaintenanceApi, {
+  IContractMaintenanceQuery,
+  IContractMaintenanceRes
+} from "@/api/tsx/sales-order-management/contractMaintenanceApi"
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -18,9 +21,9 @@ import router from "@/router"
 
 /** 外协合同维护 */
 export default new (class ContractMaintenance extends PageBase {
-  private api = new TempApi()
-  private query: ITempQuery = {}
-  private selected: Array<ITempRes> = []
+  private api = new ContractMaintenanceApi()
+  private query: IContractMaintenanceQuery = {}
+  private selected: Array<IContractMaintenanceRes> = []
 
   public render(): JSX.Element {
     return (
@@ -52,7 +55,7 @@ export default new (class ContractMaintenance extends PageBase {
     })
   }
 
-  private tableAction(scope: ElRow<ITempRes>) {
+  private tableAction(scope: ElRow<IContractMaintenanceRes>) {
     return [
       <el-button type="primary" link onClick={() => this.details(scope.row.id, "look")}>
         详情
@@ -63,7 +66,7 @@ export default new (class ContractMaintenance extends PageBase {
     ]
   }
 
-  private onSelectionChange(v: Array<ITempRes>) {
+  private onSelectionChange(v: Array<IContractMaintenanceRes>) {
     this.selected = v
   }
 

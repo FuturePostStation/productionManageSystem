@@ -71,7 +71,7 @@ export default new (class ListView<
               columns={this.columns}
               actionConfig={this.tableConfig?.actionConfig || { width: "120" }}
               onSelectionChange={this.selectionChange}
-              v-slots={{ actionSlot: (scope: ElRow<Res>) => this.actionSlot(scope) }}
+              v-slots={{ actionSlot: this.actionSlot }}
             />
           </MultiStatus>
         </div>
