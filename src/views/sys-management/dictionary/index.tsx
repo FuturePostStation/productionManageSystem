@@ -2,14 +2,13 @@
  * Author: pwl330109371 330109371@qq.com
  * Date: 2023-06-13 23:14:33
  * LastEditors: pwl330109371 330109371@qq.com
- * LastEditTime: 2023-06-15 00:03:02
+ * LastEditTime: 2023-06-14 20:19:39
  */
 import MyTable from "@/components/tsx/MyTable"
-import OrganizationalDialog from "./organizationalDialog"
+import editDialog from "./editDialog"
 import SearchBar from "@/components/tsx/SearchBar"
 import { PageBase } from "@/components/tsx/PageBase"
 import { ITempRes } from "@/api/tsx/ListTestApi.js"
-// import { getSysOrgList } from "@/api/system/organizatuinalApi"
 
 export default new (class TestPage extends PageBase {
   private get pager() {
@@ -17,16 +16,16 @@ export default new (class TestPage extends PageBase {
     for (let index = 0; index < 10; index++) {
       list.push({ name: index + 1, status: "启用", name3: "fdgf" })
     }
-    // const res = getSysOrgList()
-    // console.log("res", res)
     return list
   }
 
   private get columns() {
     return {
-      name: { label: "名称" },
-      status: { label: "状态" },
-      name3: { label: "员工数" }
+      name: { label: "字典值" },
+      status: { label: "字典键" },
+      name3: { label: "启用状态" },
+      name4: { label: "排序" },
+      name5: { label: "描述" }
     }
   }
 
@@ -49,7 +48,7 @@ export default new (class TestPage extends PageBase {
                 <el-form-item class="zs_form-item" prop="deptName">
                   <el-input
                     v-model={this.queryParams.deptDto.deptName}
-                    placeholder="部门名称"
+                    placeholder="字典名称"
                     onKeyupEnter={this.handleQuery}
                   />
                 </el-form-item>
@@ -97,22 +96,15 @@ export default new (class TestPage extends PageBase {
       </el-button>
     ]
   }
-
   // 新增组织
   private async addHandleClick(row: any) {
     console.log("123123123", row)
-    const dialog = new OrganizationalDialog()
+    const dialog = new editDialog()
     const params = {
-      orgName: "",
-      orgPinyin: "",
-      orgCode: "",
-      orgLevel: 8,
-      orgDescribe: "",
-      isParent: 0,
-      orgPath: "123",
-      orgParent: "-1",
-      orgSname: "",
-      orgSeq: 1
+      name: "",
+      pinyin: "",
+      description: "",
+      isParent: false
     }
     const res = await dialog.show(params, { title: "新增组织机构", width: "800px" })
     console.log("res", res)
