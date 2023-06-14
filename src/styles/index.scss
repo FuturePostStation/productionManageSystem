@@ -1,5 +1,7 @@
 // 全局 CSS 变量
 @import "./variables.css";
+@import "./variables.scss";
+@import "./mixins.scss";
 // Transition
 @import "./transition.scss";
 // Element Plus

@@ -1,0 +1,71 @@
+/**
+ * 全局scss变量声明
+ * Created by miaozhendong@live.com on 2021/6/30. 2020/7/22.
+ */
+
+// 主题色
+$theme-color: #1E86FF;
+// 品牌蓝
+$blue-base: #1E86FF;
+// 品牌金
+$golden-base: #C6A14A;
+// 默认背景色
+$background-color-base: #F0F0F0;
+// 默认字体色
+$color-text-primary: #454545;
+// 表格边框线颜色
+$--table-border-color: rgba(216, 216, 216, 0.5);
+
+$blue: #2969C9;
+$red: #C03639;
+$pink: #E65D6E;
+$green: #30B08F;
+$tiffany: #4AB7BD;
+$yellow: #FEC171;
+$panGreen: #30B08F;
+// sidebar
+$menuBg: #2969C9;
+$subMenuBg: #2969C9;
+$menuHover: #204E97; //1e86ff
+$menuActive: #204E97;
+// 蓝色衍生
+$blue1: #2969C9;
+$blue2: #0086CD;
+$blue3: #0091D2;
+$blue4: #1E86FF;
+$blue5: #72ACDD;
+$blue6: #93BBE3;
+// 黄色基础及衍生
+$yellow1: #FED73F;
+$yellow2: #FEDB56;
+$yellow3: #FEDE6C;
+$yellow4: #FEE17F;
+$yellow5: #FEE592;
+$yellow6: #FDE8A4;
+// 橙色基础及衍生
+$orange1: #F4A34D;
+$orange2: #F5AD5E;
+$orange3: #F7B66F;
+$orange4: #F8BF80;
+$orange5: #F8C891;
+$orange6: #F9D0A2;
+// 红色基础及衍生
+$red1: #CF000E;
+$red2: #D5341E;
+$red3: #DB5131;
+$red4: #E06A47;
+$red5: #E68361;
+$red6: #EB9B7D;
+// 黑色基础及衍生
+$black1: #000000;
+$black2: #231815;
+$black3: #413E3D;
+$black4: #5F5D5D;
+$black5: #797979;
+$black6: #939393;
+// 灰色基础及衍生
+$gray1: #ABACAD;
+$gray2: #C2C3C4;
+$gray3: #D8D9D9;
+$gray4: #EDEDED;
+$gray5: #FFFFFF;

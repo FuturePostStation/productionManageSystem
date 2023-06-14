@@ -22,6 +22,224 @@
 		}
 	}
 }
+// 新UI弹窗dialog样式
+// 表单label 6个字
+.zh-common-dialog_6 {
+  .el-dialog {
+    width: 860px !important;
+  }
+}
+
+// 表单label 5个字
+.zh-common-dialog_5 {
+  .el-dialog {
+    width: 828px !important;
+  }
+}
+
+// 表单label 4个字
+.zhCommonDialog {
+    width: 800px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    :global {
+
+    .el-dialog__header {
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #F7F8FA;
+      padding: 0 24px;
+      box-sizing: border-box;
+      border-radius: 4px 4px 0 0;
+      //box-shadow: 0px 2px 10px 0px rgba(66, 70, 86, 0.20);
+      .el-dialog__title {
+        font-size: 14px;
+        color: #9EACC4;
+        font-weight: 500;
+        line-height: 24px;
+      }
+      .el-dialog__headerbtn .el-dialog__close {
+        color: #424656;
+      }
+    }
+			.el-dialog__body {
+				padding: 15px 30px;
+				box-sizing: border-box;
+				//zh-dialog-form_formwrap 可简写为zh-d-f_wrap
+				.zh-dialog-form_formwrap,
+				.zh-d-f_wrap {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-between;
+					//zh-dialog-form_formitem
+					//表单label 4个字
+					.zh-dialog-form_formitem {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 58px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 200px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					.self-adaption-form_formitem {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__error {
+							width: 200px;
+						}
+					}
+					.zh-dialog-form_formitem_textarea {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 58px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 546px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					.zh-dialog-form_formitem_5 {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 72px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 200px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					.zh-dialog-form_formitem_6 {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 88px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 200px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					.zh-dialog-form_formitem_100 {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 88px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 546px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					//6个字表单项
+					//不是必输项
+					.zh-dialog-form_norequire_formitem_6 {
+						width: 319px;
+					}
+					//占一行
+					.zh-dialog-form_row_formitem_6 {
+						margin-bottom: 20px;
+						display: flex;
+						.el-form-item__label {
+							min-width: 88px;
+							margin-right: 16px;
+						}
+						.el-form-item__label::before {
+							content: none;
+						}
+						.el-form-item__content {
+							width: 576px;
+							.el-date-editor.el-input {
+								width: 100%;
+							}
+						}
+					}
+					//文本域
+					.zh-dialog-form_textarea_base {
+						.el-form-item__content {
+							width: 546px;
+						}
+					}
+					.zh-dialog-form_textarea_5 {
+						.el-form-item__content {
+							width: 559px;
+						}
+					}
+					.zh-dialog-form_textarea_6 {
+						.el-form-item__content {
+							width: 576px;
+						}
+					}
+					.is-required::after {
+						content: '*';
+						margin-left: 10px;
+						width: 5px;
+						height: 5px;
+						color: #FA574F;
+						display: flex;
+						align-self: center;
+					}
+				}
+			}
+		
+    .el-dialog__footer {
+      .dialog-footer {
+        display: flex;
+        justify-content: center;
+        button {
+          width: 80px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+        }
+        .el-button + .el-button {
+          margin-left: 15px;
+        }
+      }
+    }
+	}
+}
 
 .drawerBox {
 	:global {

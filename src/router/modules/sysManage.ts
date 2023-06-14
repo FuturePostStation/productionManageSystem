@@ -1,8 +1,8 @@
 /**
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-22 15:25:34
- * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-06-12 14:45:04
+ * LastEditors: pwl330109371 330109371@qq.com
+ * LastEditTime: 2023-06-14 09:46:46
  */
 const Layout = () => import("@/layout/index.vue")
 export default [
@@ -17,6 +17,15 @@ export default [
       sort: 6
     },
     children: [
+      {
+        path: "organizational-management",
+        component: () => import("@/views/sys-management/organizational"),
+        name: "OrganizationalManagement",
+        meta: {
+          title: "机构管理",
+          keepAlive: true
+        }
+      },
       {
         path: "user-management",
         component: () => import("@/views/sys-management/user"),

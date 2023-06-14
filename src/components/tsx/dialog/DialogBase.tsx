@@ -77,7 +77,7 @@ export abstract class DialogBase<TReturn = any, TParams = TReturn> {
           } else {
             return (
               <el-dialog
-                class={style.dialogBox}
+                class={[style.dialogBox, style.zhCommonDialog]}
                 title={title}
                 v-model={dialogConfig.value.visible}
                 width={dialogConfig.value.width || "50%"}
