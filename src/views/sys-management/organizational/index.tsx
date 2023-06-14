@@ -2,14 +2,13 @@
  * Author: pwl330109371 330109371@qq.com
  * Date: 2023-06-13 23:14:33
  * LastEditors: pwl330109371 330109371@qq.com
- * LastEditTime: 2023-06-15 00:03:02
+ * LastEditTime: 2023-06-14 15:46:52
  */
 import MyTable from "@/components/tsx/MyTable"
 import OrganizationalDialog from "./organizationalDialog"
 import SearchBar from "@/components/tsx/SearchBar"
 import { PageBase } from "@/components/tsx/PageBase"
 import { ITempRes } from "@/api/tsx/ListTestApi.js"
-// import { getSysOrgList } from "@/api/system/organizatuinalApi"
 
 export default new (class TestPage extends PageBase {
   private get pager() {
@@ -17,8 +16,6 @@ export default new (class TestPage extends PageBase {
     for (let index = 0; index < 10; index++) {
       list.push({ name: index + 1, status: "启用", name3: "fdgf" })
     }
-    // const res = getSysOrgList()
-    // console.log("res", res)
     return list
   }
 
@@ -86,14 +83,8 @@ export default new (class TestPage extends PageBase {
 
   private actionSlot(scope: ElRow<ITempRes>) {
     return [
-      <el-button type="text" onClick={() => this.addHandleClick(scope.row)}>
-        <svg-icon name="push" />
-      </el-button>,
-      <el-button type="text" onClick={this.editHandleClick(scope.row)}>
-        <svg-icon name="edit-blue" />
-      </el-button>,
-      <el-button type="text" onClick={() => this.deleteHandleClick(scope.row)}>
-        <svg-icon name="delete-blue" />
+      <el-button type="primary" link onClick={() => this.addHandleClick(scope.row)}>
+        新增
       </el-button>
     ]
   }
@@ -103,27 +94,13 @@ export default new (class TestPage extends PageBase {
     console.log("123123123", row)
     const dialog = new OrganizationalDialog()
     const params = {
-      orgName: "",
-      orgPinyin: "",
-      orgCode: "",
-      orgLevel: 8,
-      orgDescribe: "",
-      isParent: 0,
-      orgPath: "123",
-      orgParent: "-1",
-      orgSname: "",
-      orgSeq: 1
+      name: "",
+      pinyin: "",
+      description: "",
+      isParent: false
     }
     const res = await dialog.show(params, { title: "新增组织机构", width: "800px" })
     console.log("res", res)
-  }
-
-  private async editHandleClick(row: any) {
-    console.log("123123123", row)
-  }
-
-  private async deleteHandleClick(row: any) {
-    console.log("123123123", row)
   }
 
   private handleQuery() {

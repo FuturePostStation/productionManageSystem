@@ -21,5 +21,16 @@ export interface IContractMaintenanceAdd {
   fieldCode: string
 }
 export interface IContractMaintenanceRes extends IContractMaintenanceAdd {
-  id: number
+  contractAmount: number
+  contractSigningTime: string
+  createTime: string
+  createUser: string
+  externalContractId: string
+  externalContractName: string
+  partyA: string
+  partyB: string
+  saleOrderId: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

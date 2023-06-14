@@ -13,26 +13,31 @@ export interface IMaintenanceQuery extends IPageQuery {
   sex?: number
 }
 export interface IMaintenanceAdd {
-  fieldName: string
-  fieldCode: string
-}
-export interface IMaintenanceRes extends IMaintenanceAdd {
   contractAmount: number
-  contractCloseTime: string
-  contractEffectiveTime: string
-  contractEndTime: string
-  contractName: string
-  contractType: number
-  createTime: string
-  createUser: string
-  orderDownPayment: number
-  otherInformation: string
-  partyAName: string
-  partyBName: string
-  paymentTime: string
-  saleOrderId: string
   saleOrderName: string
   saleOrderNumber: string
+  contractName: string
+  contractType: number
+  orderDownPayment: number
+  partyAName: string
+  partyBName: string
+  contractEffectiveTime: string
+  contractEndTime: string
+  contractCloseTime: string
+  otherInformation: string
+
+  /** 交付材料 */
+  amountCollected: number
+  deliveryTime: string
+
+  /** 本地扩展 */
+  pdfList: AnyArray
+}
+export interface IMaintenanceRes extends IMaintenanceAdd {
+  createTime: string
+  createUser: string
+  paymentTime: string
+  saleOrderId: string
   status: number
   updateTime: string
   updateUser: string

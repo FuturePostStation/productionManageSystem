@@ -21,7 +21,7 @@ export default new (class Maintenance extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
-        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "120" } }}
+        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "140" } }}
         addHandler={this.addOrEdit}
         editHandler={this.addOrEdit}
         onSelectionChange={this.onSelectionChange}
@@ -48,11 +48,13 @@ export default new (class Maintenance extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      saleOrderName: { label: "销售订单名称" },
+      saleOrderNumber: { label: "销售订单编号" },
+      status: { label: "订单状态" },
+      partyAName: { label: "甲方单位名称" },
+      createTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      contractAmount: { label: "合同金额（元）" }
+    } as Dict<IColItem>)
   }
 
   private tableHeadAct() {

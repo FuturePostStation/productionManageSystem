@@ -17,5 +17,13 @@ export interface IExamineAdd {
   fieldCode: string
 }
 export interface IExamineRes extends IExamineAdd {
-  id: number
+  auditLeader: number
+  contractAmount: number
+  createTime: string
+  createUser: string
+  saleAuditId: string
+  saleOrderId: string
+  signTime: string
+  status: number
+  updateTime: string
 }

@@ -48,19 +48,20 @@ export default new (class ContractMaintenance extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      saleOrderName: { label: "订单名称" },
+      saleOrderNumber: { label: "销售订单编号" },
+      partyAName: { label: "甲方单位名称" },
+      signTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      contractAmount: { label: "合同金额（元）" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IContractMaintenanceRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id, "look")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.details(scope.row.id, "edit")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "edit")}>
         维护
       </el-button>
     ]
@@ -75,7 +76,7 @@ export default new (class ContractMaintenance extends PageBase {
     router.push({ name: "EditMaintenance", params: { pageType: "contract", type: "add" } })
   }
 
-  private details(id: number, type: "look" | "edit") {
+  private details(id: string, type: "look" | "edit") {
     router.push({ name: "EditMaintenance", params: { pageType: "contract", type, id: id } })
   }
 })()

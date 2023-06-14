@@ -5,6 +5,7 @@
  * LastEditTime: 2023-06-11 15:15:55
  */
 // core
+import "./extension/DateExtends"
 import { createApp } from "vue"
 import App from "@/App.vue"
 import store from "@/store"

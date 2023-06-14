@@ -53,11 +53,12 @@ export default new (class MaterialArchiving extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      saleOrderName: { label: "订单名称" },
+      saleOrderNumber: { label: "销售订单编号" },
+      partyAName: { label: "甲方单位名称" },
+      signTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      contractAmount: { label: "合同金额（元）" }
+    } as Dict<IColItem>)
   }
 
   private onSelectionChange(v: Array<IMaterialArchivingRes>) {
