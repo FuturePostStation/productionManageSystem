@@ -11,7 +11,7 @@ export default new (class Upload extends PageBase<IProps, IEvent> {
   }
 
   protected props: ComponentObjectPropsOptions<IProps> = {
-    modelValue: { required: true, type: String },
+    modelValue: String,
     accept: { type: String, default: "image/*, video/*, application/pdf" },
     mime: { type: String, default: "image" },
     disabled: { type: Boolean, default: false },

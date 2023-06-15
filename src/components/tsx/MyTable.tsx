@@ -21,7 +21,8 @@ const MyTable = defineComponent({
     isAction: { type: Boolean, default: false },
     height: { type: [String, Number] },
     border: { type: Boolean, default: true },
-    rowKey: String
+    rowKey: String,
+    tableType: { type: String, default: "selection" }
   },
   emits: ["selectionChange", "sortChange", "headerDragend", "lock"],
   render() {
@@ -53,7 +54,7 @@ const MyTable = defineComponent({
         onSelection-change={(v: any) => this.$emit("selectionChange", v)}
         onHeader-dragend={(n: number, o: number, col: any) => this.$emit("headerDragend", n, col)}
       >
-        <el-table-column type="selection" width="45" align="center"></el-table-column>
+        {this.tableType && <el-table-column type={this.tableType} width="45" align="center"></el-table-column>}
         {Object.keys(this.columns).map((key) => {
           const item = this.columns[key]
           return (

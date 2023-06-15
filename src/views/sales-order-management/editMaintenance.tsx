@@ -23,6 +23,20 @@ export default new (class EditMaintenance extends PageBase {
     this.pageType = (route.params.pageType as TPageType) || "order"
     this.actType = (route.params.type as TPageActType) || "add"
     this.id = (route.params.id as string) || ""
+    if (this.id) this.init()
+  }
+
+  private async init() {
+    try {
+      if (this.isOrder) {
+        this.ruleForm = await this.api.details(this.id)
+      } else if (this.pageType == "material") {
+        this.ruleForm = (await this.materialApi.details(this.id)) as any
+      }
+      console.log(this.ruleForm)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   private get formRules() {
@@ -35,9 +49,9 @@ export default new (class EditMaintenance extends PageBase {
         orderDownPayment: { required: true, message: "请选择", trigger: "blur" },
         partyAName: { required: true, message: "请选择", trigger: "blur" },
         partyBName: { required: true, message: "请选择", trigger: "blur" },
-        signDate: { required: true, message: "请选择", trigger: "blur" },
-        startDate: { required: true, message: "请选择", trigger: "blur" },
-        endDate: { required: true, message: "请选择", trigger: "blur" }
+        contractEndTime: { required: true, message: "请选择", trigger: "blur" },
+        contractEffectiveTime: { required: true, message: "请选择", trigger: "blur" },
+        contractCloseTime: { required: true, message: "请选择", trigger: "blur" }
       }
     } else if (this.pageType == "material") {
       return {
@@ -45,7 +59,7 @@ export default new (class EditMaintenance extends PageBase {
         deliverDate: { required: true, message: "请选择", trigger: "blur" }
       }
     }
-    return undefined
+    return {}
   }
 
   private get isOrder() {
@@ -89,71 +103,36 @@ export default new (class EditMaintenance extends PageBase {
             rules={this.formRules}
             size="default"
             label-width="140px"
+            disabled={!this.editable}
             class="zh-page_formwrap_base zh-page_formwrap_5"
           >
             <el-form-item label="合同名称" prop="contractName" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input v-model={this.ruleForm.contractName} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.contractName
-              )}
+              <el-input v-model={this.ruleForm.contractName} placeholder="请输入"></el-input>
             </el-form-item>
-
             <el-form-item label="合同类型" prop="contractType" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-select v-model={this.ruleForm.contractType} placeholder="请选择">
-                  <el-option label="订单合同" value={1} />
-                  <el-option label="外协合同" value={2} />
-                </el-select>
-              ) : (
-                this.ruleForm.contractType
-              )}
+              <el-select v-model={this.ruleForm.contractType} placeholder="请选择">
+                <el-option label="订单合同" value={1} />
+                <el-option label="外协合同" value={2} />
+              </el-select>
             </el-form-item>
-
             <el-form-item label="销售订单名称" prop="saleOrderName" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input v-model={this.ruleForm.saleOrderName} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.saleOrderName
-              )}
+              <el-input v-model={this.ruleForm.saleOrderName} placeholder="请输入"></el-input>
             </el-form-item>
-
-            <el-form-item label="销售订单编号" prop="saleOrderNumber" class="zh-page-form_formitem_5">
+            <el-form-item label="销售订单编号：" prop="saleOrderNumber" class="zh-page-form_formitem_5">
               {this.ruleForm.saleOrderNumber}
             </el-form-item>
-
             <el-form-item label="合同金额（元）" prop="contractAmount" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input type="number" v-model={this.ruleForm.contractAmount} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.contractAmount
-              )}
+              <el-input type="number" v-model={this.ruleForm.contractAmount} placeholder="请输入"></el-input>
             </el-form-item>
-
             <el-form-item label="合同首付款（元）" prop="orderDownPayment" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input type="number" v-model={this.ruleForm.orderDownPayment} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.orderDownPayment
-              )}
+              <el-input type="number" v-model={this.ruleForm.orderDownPayment} placeholder="请输入"></el-input>
             </el-form-item>
-
             <el-form-item label="甲方" prop="partyAName" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input v-model={this.ruleForm.partyAName} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.partyAName
-              )}
+              <el-input v-model={this.ruleForm.partyAName} placeholder="请输入"></el-input>
             </el-form-item>
-
             <el-form-item label="乙方" prop="partyBName" class="zh-page-form_formitem_5">
-              {this.editable ? (
-                <el-input v-model={this.ruleForm.partyBName} placeholder="请输入"></el-input>
-              ) : (
-                this.ruleForm.partyBName
-              )}
+              <el-input v-model={this.ruleForm.partyBName} placeholder="请输入"></el-input>
             </el-form-item>
-
             {this.orderNode()}
             {this.otherNode()}
             {this.pdfNode()}
@@ -167,40 +146,28 @@ export default new (class EditMaintenance extends PageBase {
     if (this.isOrder) {
       return [
         <el-form-item label="合同签订日期" prop="contractEndTime" class="zh-page-form_formitem_5">
-          {this.editable ? (
-            <el-date-picker
-              v-model={this.ruleForm.contractEndTime}
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%"
-            />
-          ) : (
-            this.ruleForm.contractEndTime
-          )}
+          <el-date-picker
+            v-model={this.ruleForm.contractEndTime}
+            type="date"
+            placeholder="Pick a date"
+            style="width: 100%"
+          />
         </el-form-item>,
         <el-form-item label="合同生效日期" prop="contractEffectiveTime" class="zh-page-form_formitem_5">
-          {this.editable ? (
-            <el-date-picker
-              v-model={this.ruleForm.contractEffectiveTime}
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%"
-            />
-          ) : (
-            this.ruleForm.contractEffectiveTime
-          )}
+          <el-date-picker
+            v-model={this.ruleForm.contractEffectiveTime}
+            type="date"
+            placeholder="Pick a date"
+            style="width: 100%"
+          />
         </el-form-item>,
         <el-form-item label="合同结束日期" prop="contractCloseTime" class="zh-page-form_formitem_5">
-          {this.editable ? (
-            <el-date-picker
-              v-model={this.ruleForm.contractCloseTime}
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%"
-            />
-          ) : (
-            this.ruleForm.contractCloseTime
-          )}
+          <el-date-picker
+            v-model={this.ruleForm.contractCloseTime}
+            type="date"
+            placeholder="Pick a date"
+            style="width: 100%"
+          />
         </el-form-item>
       ]
     }
@@ -230,16 +197,12 @@ export default new (class EditMaintenance extends PageBase {
       return (
         <div style={{ width: "100%" }}>
           <h2>其他信息</h2>
-          {this.editable ? (
-            <el-input
-              type="textarea"
-              resize="none"
-              v-model={this.ruleForm.otherInformation}
-              placeholder="请输入"
-            ></el-input>
-          ) : (
-            this.ruleForm.otherInformation
-          )}
+          <el-input
+            type="textarea"
+            resize="none"
+            v-model={this.ruleForm.otherInformation}
+            placeholder="请输入"
+          ></el-input>
         </div>
       )
     } else if (this.pageType == "contract") {
@@ -247,23 +210,15 @@ export default new (class EditMaintenance extends PageBase {
     } else if (this.pageType == "material") {
       return [
         <el-form-item label="回款金额（元）" prop="amountCollected" class="zh-page-form_formitem_5">
-          {this.editable ? (
-            <el-input type="number" v-model={this.ruleForm.amountCollected} placeholder="请输入"></el-input>
-          ) : (
-            this.ruleForm.amountCollected
-          )}
+          <el-input type="number" v-model={this.ruleForm.amountCollected} placeholder="请输入"></el-input>
         </el-form-item>,
         <el-form-item label="交付日期" prop="deliveryTime" class="zh-page-form_formitem_5">
-          {this.editable ? (
-            <el-date-picker
-              v-model={this.ruleForm.deliveryTime}
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%"
-            />
-          ) : (
-            this.ruleForm.deliveryTime
-          )}
+          <el-date-picker
+            v-model={this.ruleForm.deliveryTime}
+            type="date"
+            placeholder="Pick a date"
+            style="width: 100%"
+          />
         </el-form-item>
       ]
     }
@@ -274,6 +229,7 @@ export default new (class EditMaintenance extends PageBase {
   }
 
   private save() {
+    console.log(this.formRef, this.$refs)
     this.formRef.validate(async (valid) => {
       if (!valid) return
       const loading = new MyLoading()
@@ -284,6 +240,7 @@ export default new (class EditMaintenance extends PageBase {
           await this.materialApi[this.id ? "edit" : "add"]?.(this.ruleForm as any)
         }
         this.$message.success("操作成功")
+        this.cancel()
       } catch (error) {
         console.log(error)
         this.$alert(`${error}`, { type: "error" })

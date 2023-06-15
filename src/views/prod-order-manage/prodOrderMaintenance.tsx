@@ -12,7 +12,7 @@ import ProdOrderMaintenanceApi, {
 import ListView from "@/components/tsx/ListView"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
-import TestDialog from "@/components/tsx/dialog/TestDialog"
+import router from "@/router"
 
 /** 生产订单维护 */
 export default new (class ProdOrderMaintenance extends PageBase {
@@ -24,7 +24,8 @@ export default new (class ProdOrderMaintenance extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
-        dialogConfig={{ editDialog: TestDialog }}
+        addHandler={this.addOrEdit}
+        editHandler={this.addOrEdit}
         tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "160" } }}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
@@ -41,22 +42,29 @@ export default new (class ProdOrderMaintenance extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      productName: { label: "生产订单名称" },
+      status: { label: "生产订单状态" },
+      produceOrderNumber: { label: "生产订单编号" },
+      deliveryTime: { label: "交付日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      produceCreateTime: { label: "生产订单创建日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IProdOrderMaintenanceRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.produceOrderId)}>
         详情
       </el-button>
     ]
   }
 
-  private details(id: number) {
-    console.log(id)
+  private details(id: string) {
+    router.push({ name: "ProdOrderEdit", params: { type: "look", id: id } })
+  }
+
+  private addOrEdit(item: IProdOrderMaintenanceRes) {
+    const params: Dict = { type: item ? "edit" : "add" }
+    if (item) params.id = item.produceOrderId
+    router.push({ name: "ProdOrderEdit", params })
   }
 })()

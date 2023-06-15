@@ -80,7 +80,7 @@ export class Pager<T extends any, R, Q> {
   }
 
   public get items(): Array<R> {
-    return this._items
+    return this._items || []
   }
 
   /**

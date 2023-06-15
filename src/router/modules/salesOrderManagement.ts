@@ -38,7 +38,7 @@ export default [
       },
       {
         path: "examine",
-        component: () => import("@/views/sales-order-management/examine"),
+        component: () => import("@/views/sales-order-management/orderAudit"),
         name: "Examine",
         meta: {
           title: "销售订单审核",

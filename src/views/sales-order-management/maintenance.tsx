@@ -21,6 +21,7 @@ export default new (class Maintenance extends PageBase {
       <ListView
         api={this.api}
         query={this.query}
+        idKey="saleOrderId"
         tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "140" } }}
         addHandler={this.addOrEdit}
         editHandler={this.addOrEdit}
@@ -40,7 +41,7 @@ export default new (class Maintenance extends PageBase {
 
   private tableAction(scope: ElRow<IMaintenanceRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId)}>
         详情
       </el-button>
     ]
@@ -52,7 +53,7 @@ export default new (class Maintenance extends PageBase {
       saleOrderNumber: { label: "销售订单编号" },
       status: { label: "订单状态" },
       partyAName: { label: "甲方单位名称" },
-      createTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      createTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
       contractAmount: { label: "合同金额（元）" }
     } as Dict<IColItem>)
   }
@@ -82,11 +83,11 @@ export default new (class Maintenance extends PageBase {
 
   private addOrEdit(item: IMaintenanceRes) {
     const params: Dict = { pageType: "order", type: item ? "edit" : "add" }
-    if (item) params.id = item.id
+    if (item) params.id = item.saleOrderId
     router.push({ name: "EditMaintenance", params })
   }
 
-  private details(id: number) {
+  private details(id: string) {
     router.push({ name: "EditMaintenance", params: { pageType: "order", type: "look", id: id } })
   }
 })()

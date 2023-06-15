@@ -21,5 +21,5 @@ export interface IMaterialArchivingAdd {
   fieldCode: string
 }
 export interface IMaterialArchivingRes extends IMaterialArchivingAdd {
-  id: number
+  saleOrderId: string
 }

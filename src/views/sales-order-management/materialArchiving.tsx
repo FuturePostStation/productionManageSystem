@@ -26,8 +26,8 @@ export default new (class MaterialArchiving extends PageBase {
         query={this.query}
         tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
         addHandler={this.addOrEdit}
-        onSelectionChange={this.onSelectionChange}
-        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
+        onSelectionChange={(v: any) => (this.selected = v)}
+        vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction, tableHeadAct: this.tableHeadAct }}
       />
     )
   }
@@ -40,12 +40,20 @@ export default new (class MaterialArchiving extends PageBase {
     ]
   }
 
+  private tableHeadAct() {
+    return [
+      <el-button type="primary" onClick={() => this.archiving()}>
+        归档
+      </el-button>
+    ]
+  }
+
   private tableAction(scope: ElRow<IMaterialArchivingRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id, "look")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.details(scope.row.id, "edit")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "edit")}>
         维护
       </el-button>
     ]
@@ -56,21 +64,21 @@ export default new (class MaterialArchiving extends PageBase {
       saleOrderName: { label: "订单名称" },
       saleOrderNumber: { label: "销售订单编号" },
       partyAName: { label: "甲方单位名称" },
-      signTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      signTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
       contractAmount: { label: "合同金额（元）" }
     } as Dict<IColItem>)
   }
 
-  private onSelectionChange(v: Array<IMaterialArchivingRes>) {
-    this.selected = v
-  }
-
   private addOrEdit() {
-    if (this.selected.length == 0) return this.$message.error("当前还未选择销售订单")
+    // if (this.selected.length == 0) return this.$message.error("当前还未选择数据")
     router.push({ name: "EditMaintenance", params: { pageType: "material", type: "add" }, query: { ids: [] } })
   }
 
-  private details(id: number, type: "look" | "edit") {
+  private details(id: string, type: "look" | "edit") {
     router.push({ name: "EditMaintenance", params: { pageType: "material", type, id: id } })
+  }
+
+  private archiving() {
+    if (this.selected.length == 0) return this.$message.error("当前还未选择数据")
   }
 })()

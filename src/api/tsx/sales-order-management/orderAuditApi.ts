@@ -1,22 +1,22 @@
 import { CommonApi } from "../CommonApi"
 import { IPageQuery } from "../Interface"
 
-export default class ExamineApi extends CommonApi<IExamineAdd, IExamineRes, IExamineQuery> {
+export default class OrderAuditApi extends CommonApi<IOrderAuditAdd, IOrderAuditRes, IOrderAuditQuery> {
   constructor() {
     super("/api/sale/v1/sysSaleAudit")
   }
 }
 
-export interface IExamineQuery extends IPageQuery {
+export interface IOrderAuditQuery extends IPageQuery {
   name?: string
   birthday?: string
   sex?: number
 }
-export interface IExamineAdd {
+export interface IOrderAuditAdd {
   fieldName: string
   fieldCode: string
 }
-export interface IExamineRes extends IExamineAdd {
+export interface IOrderAuditRes extends IOrderAuditAdd {
   auditLeader: number
   contractAmount: number
   createTime: string

@@ -32,7 +32,7 @@ export default new (class ContractMaintenance extends PageBase {
         query={this.query}
         tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "120" } }}
         addHandler={this.addOrEdit}
-        onSelectionChange={this.onSelectionChange}
+        onSelectionChange={(v: any) => (this.selected = v)}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction }}
       />
     )
@@ -51,7 +51,7 @@ export default new (class ContractMaintenance extends PageBase {
       saleOrderName: { label: "订单名称" },
       saleOrderNumber: { label: "销售订单编号" },
       partyAName: { label: "甲方单位名称" },
-      signTime: { label: "签订日期", formatter: (r, c, v) => new Date(v).format("yyyy-MM-dd") },
+      signTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
       contractAmount: { label: "合同金额（元）" }
     } as Dict<IColItem>)
   }
@@ -65,10 +65,6 @@ export default new (class ContractMaintenance extends PageBase {
         维护
       </el-button>
     ]
-  }
-
-  private onSelectionChange(v: Array<IContractMaintenanceRes>) {
-    this.selected = v
   }
 
   private addOrEdit() {

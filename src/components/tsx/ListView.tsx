@@ -34,7 +34,8 @@ export default new (class ListView<
     dialogConfig: Object,
     addHandler: Function,
     editHandler: Function,
-    notAdd: Boolean
+    notAdd: Boolean,
+    idKey: { type: String, default: "id" }
   }
   public expose: (string | number)[] = ["refresh", "handler"]
   public emits: (keyof IEvent)[] = ["selectionChange"]
@@ -46,6 +47,10 @@ export default new (class ListView<
 
   public async created() {
     this.pager = new Pager(this.api, this.method || this.api.page, () => this.query)
+    this.pager.onError = (err) => {
+      console.log(err)
+      return true
+    }
     this.handler = new CommonHandler(this.api, this.pager)
     await this.refresh()
   }
@@ -154,7 +159,7 @@ export default new (class ListView<
   }
 
   private delete(item: Res) {
-    this.handler.confirmAction("是否删除此数据?", item.id.toString())
+    this.handler.confirmAction("是否删除此数据?", (item as Dict)[this.idKey].toString())
   }
 
   private reset() {
@@ -184,6 +189,7 @@ interface IProps<Q> {
   query: Q
   /** 重置 外部处理 */
   resetQuery?: () => Q
+  idKey: string
 
   /** 表格配置 */
   tableConfig?: {

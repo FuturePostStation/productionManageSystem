@@ -17,9 +17,23 @@ export interface IProdOrderMaintenanceQuery extends IPageQuery {
   sex?: number
 }
 export interface IProdOrderMaintenanceAdd {
-  fieldName: string
-  fieldCode: string
+  createTime: string
+  createUser: string
+  deliveryMode: string
+  deliveryTime: string
+  otherInformation: string
+  produceCompletionTime: string
+  produceCreateTime: string
+  produceOrderName: string
+  produceOrderNumber: string
+  productName: string
+  productQuantity: number
+  salesOrderId: string
+  status: number
+  updateTime: string
+  updateUser: string
+  whetherStandard: number
 }
 export interface IProdOrderMaintenanceRes extends IProdOrderMaintenanceAdd {
-  id: number
+  produceOrderId: string
 }

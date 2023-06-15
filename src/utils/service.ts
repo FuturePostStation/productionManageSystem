@@ -4,6 +4,12 @@ import { ElMessage } from "element-plus"
 import { get } from "lodash-es"
 import { getToken } from "./cache/cookies"
 
+export interface IResponse<T> {
+  data: T
+  msg: string
+  stat: number
+}
+
 /** 创建请求实例 */
 function createService() {
   // 创建一个 Axios 实例
@@ -18,7 +24,7 @@ function createService() {
   service.interceptors.response.use(
     (response) => {
       // apiData 是 API 返回的数据
-      const apiData = response.data as any
+      const apiData = response.data
       // 这个 Code 是和后端约定的业务 Code
       const code = apiData.stat
       // 如果没有 Code, 代表这不是项目后端开发的 API
@@ -33,7 +39,8 @@ function createService() {
           default:
             // 不是正确的 Code
             ElMessage.error(apiData.msg || "Error")
-            return Promise.reject(new Error("Error"))
+            // return Promise.reject(new Error("Error"))
+            throw "Error"
         }
       }
     },

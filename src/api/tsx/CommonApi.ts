@@ -1,4 +1,4 @@
-import { request } from "@/utils/service"
+import { IResponse, request } from "@/utils/service"
 import { IPage, IPageSort } from "./Interface"
 
 export class CommonApi<AddT, RetT = AddT, Query = IPageSort> {
@@ -20,8 +20,13 @@ export class CommonApi<AddT, RetT = AddT, Query = IPageSort> {
     return request({ url: `${this.urlPrefix}/${id}`, method: "delete" })
   }
 
-  public details(id: string) {
-    return request<RetT>({ url: `${this.urlPrefix}Info/${id}`, method: "get", params: { id } })
+  public async details(id: string) {
+    try {
+      const res = await request<IResponse<RetT>>({ url: `${this.urlPrefix}Info/${id}`, method: "get", params: { id } })
+      return res.data
+    } catch (error) {
+      throw error
+    }
   }
 
   public page(params?: Query) {

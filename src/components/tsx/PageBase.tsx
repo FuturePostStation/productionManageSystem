@@ -6,8 +6,7 @@ import {
   CreateComponentPublicInstance,
   MethodOptions,
   VNode,
-  getCurrentInstance,
-  nextTick
+  getCurrentInstance
 } from "vue"
 
 let dataQueue: Dict = {}
@@ -46,11 +45,11 @@ export abstract class PageBase<Props = {}, PrefixedEvents = {}> {
   public setup() {
     const ins = getCurrentInstance()
     if (ins?.refs) {
-      nextTick(() => {
+      setTimeout(() => {
         for (const key in ins!.refs) {
           ins!.data[key] = ins!.refs[key]
         }
-      })
+      }, 0)
     }
   }
 

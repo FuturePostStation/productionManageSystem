@@ -27,6 +27,16 @@ export default [
         }
       },
       {
+        path: "prodOrderEdit/:type/:id?",
+        component: () => import("@/views/prod-order-manage/prodOrderEdit"),
+        name: "ProdOrderEdit",
+        meta: {
+          title: "生产订单编辑",
+          keepAlive: true,
+          hidden: true
+        }
+      },
+      {
         path: "technologicalDesign",
         component: () => import("@/views/prod-order-manage/technologicalDesign"),
         name: "TechnologicalDesign",
