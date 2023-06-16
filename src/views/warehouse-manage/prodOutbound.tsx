@@ -38,16 +38,18 @@ export default new (class ProdOutbound extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      deliveryNumber: { label: "出库单号" },
+      recipient: { label: "领用人" },
+      productDeliveryTime: { label: "出库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      outboundProduct: { label: "出库产品" },
+      outboundPerson: { label: "出库人" },
+      outboundRemarks: { label: "备注" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IProdOutboundRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.productDeliveryId)}>
         查看
       </el-button>
     ]

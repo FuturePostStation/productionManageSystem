@@ -21,5 +21,15 @@ export interface IMaterialCollectionAdd {
   fieldCode: string
 }
 export interface IMaterialCollectionRes extends IMaterialCollectionAdd {
-  id: number
+  applyForQuantity: number
+  boomId: string
+  createTime: string
+  createUser: string
+  materialClaimId: string
+  produceOrderId: string
+  produceTaskStatus: number
+  receivedQuantity: number
+  status: number
+  updateTime: string
+  updateUser: string
 }

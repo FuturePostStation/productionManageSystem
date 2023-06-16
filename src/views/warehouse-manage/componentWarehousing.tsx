@@ -41,16 +41,13 @@ export default new (class ComponentWarehousing extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: {
-        label: "字段标识",
-        formatter: () => {
-          return 1
-        }
-      },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      componentWarehousingNumber: { label: "入库单号" },
+      estimatedCost: { label: "金额(元)" },
+      warehousingTime: { label: "入库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      componentName: { label: "入库部件" },
+      depositor: { label: "入库人" },
+      warehousionRemarks: { label: "备注" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IComponentWarehousingRes>) {

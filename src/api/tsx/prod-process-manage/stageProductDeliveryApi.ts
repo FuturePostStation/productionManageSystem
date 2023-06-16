@@ -21,5 +21,14 @@ export interface IStageProductDeliveryAdd {
   fieldCode: string
 }
 export interface IStageProductDeliveryRes extends IStageProductDeliveryAdd {
-  id: number
+  accumulativeDeliveryQuantity: number
+  actualDeliveryQuantity: number
+  createTime: string
+  createUser: string
+  orderDeliveryQuantity: number
+  produceOrderId: string
+  stageDeliveryId: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

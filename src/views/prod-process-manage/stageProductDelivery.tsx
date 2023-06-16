@@ -41,25 +41,25 @@ export default new (class StageProductDelivery extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      productName: { label: "生产订单名称" },
+      status: { label: "生产任务状态" },
+      produceOrderId: { label: "生产订单编号" },
+      createTime: { label: "生产任务分配日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IStageProductDeliveryRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.stageDeliveryId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "edit")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.stageDeliveryId, "edit")}>
         阶段交付
       </el-button>
     ]
   }
 
-  private toDetails(id: number, type: TPageActType) {
+  private toDetails(id: string, type: TPageActType) {
     router.push({ name: "EditProcess", params: { pageType: "delivery", type: type || "add", id: id } })
   }
 })()

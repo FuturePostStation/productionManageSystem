@@ -39,11 +39,12 @@ export default new (class ProcessAudit extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      productName: { label: "生产订单名称" },
+      status: { label: "设计审核状态" },
+      number: { label: "生产订单编号" },
+      designSubmissionTime: { label: "设计提交日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      createUser: { label: "制作人" }
+    } as Dict<IColItem>)
   }
 
   private tableHeadAct() {
@@ -62,13 +63,13 @@ export default new (class ProcessAudit extends PageBase {
 
   private tableAction(scope: ElRow<IPorocessAuditRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.produceOrderId)}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.agree(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.agree(scope.row.produceOrderId)}>
         审核通过
       </el-button>,
-      <el-button type="primary" link onClick={() => this.disagree(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.disagree(scope.row.produceOrderId)}>
         退回修改
       </el-button>
     ]
@@ -90,15 +91,15 @@ export default new (class ProcessAudit extends PageBase {
     console.log("exportExcel")
   }
 
-  private details(id: number) {
+  private details(id: string) {
     console.log(id)
   }
 
-  private agree(id: number) {
+  private agree(id: string) {
     console.log(id)
   }
 
-  private disagree(id: number) {
+  private disagree(id: string) {
     console.log(id)
   }
 })()

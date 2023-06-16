@@ -17,5 +17,19 @@ export interface IProdOutboundAdd {
   fieldCode: string
 }
 export interface IProdOutboundRes extends IProdOutboundAdd {
-  id: number
+  createTime: number
+  createUser: number
+  deliveryNumber: number
+  outboundPerson: number
+  outboundProduct: number
+  outboundRemarks: number
+  productDeliveryId: number
+  productDeliveryName: number
+  productDeliveryTime: number
+  productInformationId: number
+  productOutboundQuantity: number
+  recipient: number
+  status: number
+  updateTime: number
+  updateUser: number
 }

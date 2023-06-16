@@ -17,5 +17,22 @@ export interface IPurchaseOrderAdd {
   fieldCode: string
 }
 export interface IPurchaseOrderRes extends IPurchaseOrderAdd {
-  id: number
+  boomQuantity: number
+  category: string
+  createTime: string
+  createUser: string
+  inventoryQuantity: number
+  materialName: string
+  produceOrderId: string
+  produceOrderName: string
+  produceOrderNumber: string
+  producer: string
+  purchaseDeliveryTime: string
+  purchaseOrderId: string
+  purchaseOrderNumber: string
+  purchaseQuantity: number
+  specification: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

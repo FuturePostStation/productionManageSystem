@@ -21,5 +21,13 @@ export interface IProdProgressAuditAdd {
   fieldCode: string
 }
 export interface IProdProgressAuditRes extends IProdProgressAuditAdd {
-  id: number
+  createTime: string
+  createUser: string
+  cumulativeNumberCompleted: number
+  dailyCompletedQuantity: number
+  produceOrderId: string
+  progressAuditId: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

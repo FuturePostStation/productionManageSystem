@@ -41,29 +41,29 @@ export default new (class SheetMetalAssignment extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      workshopName: { label: "生产订单名称" },
+      status: { label: "生产任务状态" },
+      produceOrderId: { label: "生产订单编号" },
+      createTime: { label: "生产任务分配日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<ISheetMetalAssignmentRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.produceOrderId)}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.taskAllocation(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.taskAllocation(scope.row.produceOrderId)}>
         任务分配
       </el-button>
     ]
   }
 
-  private details(id: number) {
+  private details(id: string) {
     console.log(id)
   }
 
-  private taskAllocation(id: number) {
+  private taskAllocation(id: string) {
     console.log(id)
   }
 })()

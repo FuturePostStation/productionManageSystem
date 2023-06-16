@@ -21,5 +21,14 @@ export interface IIncomingProductInspectionAdd {
   fieldCode: string
 }
 export interface IIncomingProductInspectionRes extends IIncomingProductInspectionAdd {
-  id: number
+  accumulativeReceiveQuantity: number
+  actualReceiveQuentity: number
+  createTime: string
+  createUser: string
+  incomingInspectionId: string
+  orderDeliveryQuantity: number
+  produceOrderId: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

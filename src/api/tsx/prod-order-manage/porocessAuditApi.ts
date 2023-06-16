@@ -17,5 +17,13 @@ export interface IPorocessAuditAdd {
   fieldCode: string
 }
 export interface IPorocessAuditRes extends IPorocessAuditAdd {
-  id: number
+  createTime: string
+  createUser: string
+  designSubmissionTime: string
+  processAuditId: string
+  produceOrderId: string
+  producer: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

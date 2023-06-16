@@ -40,7 +40,7 @@ function createService() {
             // 不是正确的 Code
             ElMessage.error(apiData.msg || "Error")
             // return Promise.reject(new Error("Error"))
-            throw "Error"
+            throw apiData.msg || "Error"
         }
       }
     },

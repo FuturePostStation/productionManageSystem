@@ -26,7 +26,7 @@ export default new (class TechnologicalDesign extends PageBase {
         api={this.api}
         query={this.query}
         notAdd
-        tableConfig={{ setColumns: this.setColumns, actionConfig: { width: "200" } }}
+        tableConfig={{ setColumns: this.setColumns, notEdit: true, notDel: true, actionConfig: { width: "200" } }}
         onSelectionChange={this.onSelectionChange}
         vSlots={{ searchItems: this.searchItems, tableAction: this.tableAction, tableHeadAct: this.tableHeadAct }}
       />
@@ -43,11 +43,11 @@ export default new (class TechnologicalDesign extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      productName: { label: "生产订单名称" },
+      status: { label: "设计审核状态" },
+      number: { label: "生产订单编号" },
+      designSubmissionTime: { label: "设计提交日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") }
+    } as Dict<IColItem>)
   }
 
   private tableHeadAct() {
@@ -66,10 +66,10 @@ export default new (class TechnologicalDesign extends PageBase {
 
   private tableAction(scope: ElRow<ITechnologicalDesignRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "look")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.id, "edit")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "edit")}>
         设计
       </el-button>
     ]
@@ -87,7 +87,7 @@ export default new (class TechnologicalDesign extends PageBase {
     console.log("export")
   }
 
-  private toDetails(id?: number, type?: TPageActType) {
+  private toDetails(id?: string, type?: TPageActType) {
     router.push({ name: "EditDesign", params: { type: type || "add", id: id } })
   }
 })()

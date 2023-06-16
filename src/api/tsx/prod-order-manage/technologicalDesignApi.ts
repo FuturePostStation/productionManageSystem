@@ -21,5 +21,17 @@ export interface ITechnologicalDesignAdd {
   fieldCode: string
 }
 export interface ITechnologicalDesignRes extends ITechnologicalDesignAdd {
-  id: number
+  componentName: string
+  createTime: string
+  createUser: string
+  designSubmissionTime: string
+  inventory: string
+  materialName: string
+  number: number
+  processDesignId: string
+  produceOrderId: string
+  productName: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

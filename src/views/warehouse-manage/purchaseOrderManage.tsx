@@ -38,29 +38,31 @@ export default new (class PurchaseOrderManage extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      produceOrderName: { label: "生产订单名称" },
+      produceOrderNumber: { label: "生产订单编号" },
+      status: { label: "采购订单状态" },
+      purchaseOrderNumber: { label: "采购订单编号" },
+      purchaseDeliveryTime: { label: "采购提交日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      producer: { label: "制作人" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IPurchaseOrderRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.purchaseOrderId)}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.make(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.make(scope.row.purchaseOrderId)}>
         制作
       </el-button>
     ]
   }
 
-  private details(id: number) {
+  private details(id: string) {
     console.log(id)
   }
 
-  private make(id: number) {
+  private make(id: string) {
     console.log(id)
   }
 })()

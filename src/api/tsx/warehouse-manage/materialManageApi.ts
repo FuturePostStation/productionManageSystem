@@ -17,5 +17,22 @@ export interface IMaterialManageAdd {
   fieldCode: string
 }
 export interface IMaterialManageRes extends IMaterialManageAdd {
-  id: number
+  createTime: string
+  createUser: string
+  matterAbbreviation: string
+  matterBatch: string
+  matterId: string
+  matterModel: string
+  matterName: string
+  matterNotes: string
+  matterNumber: string
+  matterPackage: string
+  matterPosition: string
+  matterPrice: number
+  matterType: number
+  matterUnit: number
+  matterValue: number
+  status: number
+  updateTime: string
+  updateUser: string
 }

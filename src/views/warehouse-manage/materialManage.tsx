@@ -51,22 +51,27 @@ export default new (class MaterialManage extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      matterName: { label: "物料名称" },
+      matterNumber: { label: "物料编号" },
+      status: { label: "状态" },
+      matterPackage: { label: "供应商" },
+      matterValue: { label: "数量" },
+      matterPosition: { label: "存放位置" },
+      createTime: { label: "入库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      matterId: { label: "入库单号" },
+      matterNotes: { label: "备注" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IMaterialManageRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.matterId)}>
         查看
       </el-button>
     ]
   }
 
-  private details(id: number) {
+  private details(id: string) {
     console.log(id)
   }
 })()

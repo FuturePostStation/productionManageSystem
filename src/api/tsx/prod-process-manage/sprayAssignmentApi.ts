@@ -21,5 +21,17 @@ export interface ISprayAssignmentAdd {
   fieldCode: string
 }
 export interface ISprayAssignmentRes extends ISprayAssignmentAdd {
-  id: number
+  accomplishTime: string
+  boomId: string
+  createTime: string
+  createUser: string
+  finishedProductQuantity: number
+  processName: string
+  produceOrderId: string
+  responsiblePerson: string
+  sprayingId: string
+  status: number
+  updateTime: string
+  updateUser: string
+  workshopName: string
 }

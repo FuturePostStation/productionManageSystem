@@ -51,22 +51,23 @@ export default new (class MaterialWarehousing extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      reorderNumber: { label: "入库单号" },
+      matterReorderSum: { label: "合计金额" },
+      createTime: { label: "入库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      reorderPerson: { label: "入库人" },
+      reorderNote: { label: "附件" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IMaterialWarehousingRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.reorderId)}>
         查看
       </el-button>
     ]
   }
 
-  private details(id: number) {
+  private details(id: string) {
     console.log(id)
   }
 })()

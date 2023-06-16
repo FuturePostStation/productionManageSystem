@@ -21,5 +21,26 @@ export interface IMaterialWarehousingAdd {
   fieldCode: string
 }
 export interface IMaterialWarehousingRes extends IMaterialWarehousingAdd {
-  id: number
+  createTime: string
+  createUser: string
+  matterBatch: string
+  matterId: string
+  matterModel: string
+  matterName: string
+  matterNote: string
+  matterPackage: number
+  matterPosition: string
+  matterPrice: string
+  matterQuantity: number
+  matterReorderSum: number
+  matterType: number
+  matterUnit: number
+  reorderId: string
+  reorderNote: string
+  reorderNumber: string
+  reorderPerson: string
+  reorderTime: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

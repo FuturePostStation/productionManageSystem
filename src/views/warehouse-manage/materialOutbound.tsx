@@ -51,16 +51,18 @@ export default new (class MaterialOutbound extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: { label: "字段标识" },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      warehousingOrderNumber: { label: "出库单号" },
+      produceOrderName: { label: "生产订单名称" },
+      produceOrderNumber: { label: "生产订单编号" },
+      warechousingTime: { label: "出库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      depositor: { label: "出库人" },
+      reorderNote: { label: "备注" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IMaterialOutboundRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.id)}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.materialWarehousingId)}>
         查看
       </el-button>
     ]

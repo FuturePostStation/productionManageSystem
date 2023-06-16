@@ -21,5 +21,17 @@ export interface ISheetMetalAssignmentAdd {
   fieldCode: string
 }
 export interface ISheetMetalAssignmentRes extends ISheetMetalAssignmentAdd {
-  id: number
+  accomplishTime: string
+  boomId: string
+  createTime: string
+  createUser: string
+  finishedProductQuantity: number
+  processName: string
+  produceOrderId: string
+  responsiblePerson: string
+  sheetmetalId: string
+  status: number
+  updateTime: string
+  updateUser: string
+  workshopName: string
 }

@@ -17,5 +17,23 @@ export interface IProdManageAdd {
   fieldCode: string
 }
 export interface IProdManageRes extends IProdManageAdd {
-  id: number
+  costUnitPrice: number
+  createTime: string
+  createUser: string
+  owningBatch: string
+  productCategory: string
+  productInformationId: string
+  productName: string
+  productNumber: string
+  productSubcategory: string
+  productWarehousingId: string
+  quantity: number
+  remarks: string
+  specificationModel: string
+  status: number
+  storageLocation: string
+  supplierAbbreviation: string
+  thresholdValue: number
+  updateTime: string
+  updateUser: string
 }

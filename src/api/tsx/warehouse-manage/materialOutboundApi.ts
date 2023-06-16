@@ -21,5 +21,15 @@ export interface IMaterialOutboundAdd {
   fieldCode: string
 }
 export interface IMaterialOutboundRes extends IMaterialOutboundAdd {
-  id: number
+  createTime: number
+  createUser: number
+  depositor: number
+  materialWarehousingId: number
+  produceOrderId: number
+  remarks: number
+  status: number
+  updateTime: number
+  updateUser: number
+  warechousingTime: number
+  warehousingOrderNumber: number
 }

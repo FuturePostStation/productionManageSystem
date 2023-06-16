@@ -21,5 +21,13 @@ export interface IProdProgressReportingAdd {
   fieldCode: string
 }
 export interface IProdProgressReportingRes extends IProdProgressReportingAdd {
-  id: number
+  createTime: string
+  createUser: string
+  cumulativeNumberCompleted: number
+  dailyCompletedQuantity: number
+  produceOrderId: string
+  reportingId: string
+  status: number
+  updateTime: string
+  updateUser: string
 }

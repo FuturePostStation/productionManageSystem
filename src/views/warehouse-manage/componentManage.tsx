@@ -41,16 +41,16 @@ export default new (class ComponentManage extends PageBase {
 
   private setColumns(cols: Dict<IColItem>) {
     Object.assign(cols, {
-      fieldName: { label: "字段名称" },
-      fieldCode: {
-        label: "字段标识",
-        formatter: () => {
-          return 1
-        }
-      },
-      field1: { label: "字段标识" },
-      field2: { label: "字段标识" }
-    })
+      componentName: { label: "部件名称" },
+      componentNumber: { label: "部件编号" },
+      status: { label: "状态" },
+      costUnitPrice: { label: "预估成本（元）" },
+      quantity: { label: "数量" },
+      storageLocation: { label: "存放位置" },
+      createTime: { label: "入库日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      depositor: { label: "入库单号" },
+      reorderNote: { label: "备注" }
+    } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IComponentManageRes>) {
