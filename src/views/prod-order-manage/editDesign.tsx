@@ -10,9 +10,11 @@ import router from "@/router"
 import style from "./editDesign.module.scss"
 import { useRoute } from "vue-router"
 import { TabsPaneContext } from "element-plus"
+import TechnologicalDesignApi, { ITechnologicalDesignRes } from "@/api/tsx/prod-order-manage/technologicalDesignApi"
 
 export default new (class EditDesign extends PageBase {
-  private ruleForm = { pdfList: [] as AnyArray }
+  private api = new TechnologicalDesignApi()
+  private ruleForm: ITechnologicalDesignRes = {} as any
   private actType: TPageActType = "add"
   private id = ""
   private selectedTab = ""
@@ -27,6 +29,15 @@ export default new (class EditDesign extends PageBase {
     const route = useRoute()
     this.actType = (route.params.type as TPageActType) || "add"
     this.id = (route.params.id as string) || ""
+    if (this.id) this.init()
+  }
+
+  private async init() {
+    try {
+      this.ruleForm = await this.api.details(this.id)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   public render(): JSX.Element {
@@ -79,7 +90,7 @@ export default new (class EditDesign extends PageBase {
               </div>
             </div>
             <div class="pdfList">
-              {this.ruleForm.pdfList.map((item) => (
+              {this.ruleForm.pdfList?.map((item) => (
                 <div class="pdfItem">
                   <Upload v-model={item.imagePath} disabled={this.actType == "look"} />
                   <div class="pdfName">{item.name}</div>

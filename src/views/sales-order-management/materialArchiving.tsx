@@ -50,10 +50,10 @@ export default new (class MaterialArchiving extends PageBase {
 
   private tableAction(scope: ElRow<IMaterialArchivingRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "look")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.materialFileId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "edit")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.materialFileId, "edit")}>
         维护
       </el-button>
     ]
@@ -64,7 +64,7 @@ export default new (class MaterialArchiving extends PageBase {
       saleOrderName: { label: "订单名称" },
       saleOrderNumber: { label: "销售订单编号" },
       partyAName: { label: "甲方单位名称" },
-      signTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      signingTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
       contractAmount: { label: "合同金额（元）" }
     } as Dict<IColItem>)
   }

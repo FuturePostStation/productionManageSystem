@@ -50,18 +50,18 @@ export default new (class ContractMaintenance extends PageBase {
     Object.assign(cols, {
       saleOrderName: { label: "订单名称" },
       saleOrderNumber: { label: "销售订单编号" },
-      partyAName: { label: "甲方单位名称" },
-      signTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
+      partyA: { label: "甲方单位名称" },
+      signingTime: { label: "签订日期", formatter: (r, c, v) => v && new Date(v).format("yyyy-MM-dd") },
       contractAmount: { label: "合同金额（元）" }
     } as Dict<IColItem>)
   }
 
   private tableAction(scope: ElRow<IContractMaintenanceRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "look")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.externalContractId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.details(scope.row.saleOrderId, "edit")}>
+      <el-button type="primary" link onClick={() => this.details(scope.row.externalContractId, "edit")}>
         维护
       </el-button>
     ]

@@ -4,6 +4,10 @@
  * @LastEditors: tzx_sujie 1354146900@qq.com
  * @LastEditTime: 2023-05-24 16:24:12
  */
+import IncomingProductInspectionApi from "@/api/tsx/prod-process-manage/incomingProductInspectionApi"
+import ProdProgressAuditApi from "@/api/tsx/prod-process-manage/prodProgressAuditApi"
+import ProdProgressReportingApi from "@/api/tsx/prod-process-manage/prodProgressReportingApi"
+import StageProductDeliveryApi from "@/api/tsx/prod-process-manage/stageProductDeliveryApi"
 import { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
 import router from "@/router"
@@ -12,15 +16,37 @@ import { useRoute } from "vue-router"
 type TPageType = "inspect" | "audit" | "report" | "delivery"
 
 export default new (class EditProcess extends PageBase {
+  private reportApi = new ProdProgressReportingApi()
+  private auditApi = new ProdProgressAuditApi()
+  private deliveryApi = new StageProductDeliveryApi()
+  private inspectApi = new IncomingProductInspectionApi()
   private pageType: TPageType = "report"
   private actType: TPageActType = "add"
   private id = ""
+  private ruleForm: Dict = {}
 
   public created() {
     const route = useRoute()
     this.pageType = (route.params.pageType as TPageType) || "order"
     this.actType = (route.params.type as TPageActType) || "add"
     this.id = (route.params.id as string) || ""
+    if (this.id) this.init()
+  }
+
+  private async init() {
+    try {
+      if (this.pageType == "report") {
+        this.ruleForm = await this.reportApi.details(this.id)
+      } else if (this.pageType == "audit") {
+        this.ruleForm = await this.auditApi.details(this.id)
+      } else if (this.pageType == "delivery") {
+        this.ruleForm = await this.deliveryApi.details(this.id)
+      } else if (this.pageType == "inspect") {
+        this.ruleForm = await this.inspectApi.details(this.id)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   private get columns(): Dict<IColItem> {

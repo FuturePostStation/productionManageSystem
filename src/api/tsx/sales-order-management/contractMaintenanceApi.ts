@@ -7,7 +7,7 @@ export default class ContractMaintenanceApi extends CommonApi<
   IContractMaintenanceQuery
 > {
   constructor() {
-    super("/api/sale/v1/sysExternalContract")
+    super("/api/sale/v1/sysExternalContract", false)
   }
 }
 

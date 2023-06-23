@@ -6,12 +6,14 @@ import { useRoute } from "vue-router"
 import MaintenanceApi, { IMaintenanceAdd } from "@/api/tsx/sales-order-management/maintenanceApi"
 import MaterialArchivingApi from "@/api/tsx/sales-order-management/materialArchivingApi"
 import { MyLoading } from "@/utils/Loading"
+import ContractMaintenanceApi from "@/api/tsx/sales-order-management/contractMaintenanceApi"
 
 type TPageType = "order" | "material" | "contract"
 
 export default new (class EditMaintenance extends PageBase {
   private api = new MaintenanceApi()
   private materialApi = new MaterialArchivingApi()
+  private contractApi = new ContractMaintenanceApi()
   private formRef: InstanceType<typeof ElForm> = null as any
   private pageType: TPageType = "order"
   private actType: TPageActType = "add"
@@ -32,6 +34,8 @@ export default new (class EditMaintenance extends PageBase {
         this.ruleForm = await this.api.details(this.id)
       } else if (this.pageType == "material") {
         this.ruleForm = (await this.materialApi.details(this.id)) as any
+      } else if (this.pageType == "contract") {
+        this.ruleForm = (await this.contractApi.details(this.id)) as any
       }
       console.log(this.ruleForm)
     } catch (error) {

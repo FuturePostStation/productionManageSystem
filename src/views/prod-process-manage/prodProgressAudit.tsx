@@ -50,10 +50,10 @@ export default new (class ProdProgressAudit extends PageBase {
 
   private tableAction(scope: ElRow<IProdProgressAuditRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "look")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.progressAuditId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "edit")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.progressAuditId, "edit")}>
         进度审核
       </el-button>
     ]
