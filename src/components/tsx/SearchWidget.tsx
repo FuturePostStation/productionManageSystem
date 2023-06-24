@@ -19,6 +19,7 @@ export default new (class SearchWidget extends PageBase<{}, IEvent, ISlots> {
           inline={true}
           class={["flex1", style.form]}
           onKeyup={withKeys(() => this.$emit("search"), ["enter"])}
+          label-width="auto"
           onSubmit={withModifiers(() => {}, ["prevent"])}
         >
           {this.$slots.default && this.$slots.default()}

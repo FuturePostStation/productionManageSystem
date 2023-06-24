@@ -7,7 +7,7 @@ export default class MaterialArchivingApi extends CommonApi<
   IMaterialArchivingQuery
 > {
   constructor() {
-    super("/api/sale/v1/sysMaterialFile")
+    super("/api/sale/v1/sysMaterialFile", false)
   }
 }
 
@@ -22,4 +22,5 @@ export interface IMaterialArchivingAdd {
 }
 export interface IMaterialArchivingRes extends IMaterialArchivingAdd {
   saleOrderId: string
+  materialFileId: string
 }

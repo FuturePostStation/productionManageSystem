@@ -1,3 +1,4 @@
+import { CommonHandler } from "@/api/tsx/CommonHander"
 import ProdOrderMaintenanceApi, { IProdOrderMaintenanceAdd } from "@/api/tsx/prod-order-manage/prodOrderMaintenanceApi"
 import MyTable, { IColItem } from "@/components/tsx/MyTable"
 import { PageBase } from "@/components/tsx/PageBase"
@@ -20,6 +21,7 @@ interface IProd {
 
 export default new (class ProdOrderEdit extends PageBase {
   private api = new ProdOrderMaintenanceApi()
+  private handler = new CommonHandler(this.api)
   private actType: TPageActType = "add"
   private id = ""
   private ruleForm: IProdOrderMaintenanceAdd = {} as any
@@ -146,5 +148,6 @@ export default new (class ProdOrderEdit extends PageBase {
 
   private save() {
     console.log("save")
+    this.handler.addOrEdit(this.ruleForm, "produceOrderId")
   }
 })()

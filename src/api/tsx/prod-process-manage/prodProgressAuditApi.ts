@@ -7,7 +7,7 @@ export default class ProdProgressAuditApi extends CommonApi<
   IProdProgressAuditQuery
 > {
   constructor() {
-    super("/api/produce/v1/produceProgressAudit")
+    super("/api/produce/v1/produceProgressAudit", false)
   }
 }
 

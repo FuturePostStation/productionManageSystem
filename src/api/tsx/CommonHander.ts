@@ -99,10 +99,10 @@ export class CommonHandler<T extends ICommonApi, R, Q> {
     }
   }
 
-  public async addOrEdit(ruleForm: R) {
+  public async addOrEdit(ruleForm: R, idKey = "id") {
     const loading = new MyLoading()
     try {
-      await this.api[hasId(ruleForm) ? "edit" : "add"]?.(ruleForm)
+      await this.api[hasId(ruleForm, idKey) ? "edit" : "add"]?.(ruleForm)
       ElMessage.success("操作成功")
       this.refresh()
       return true

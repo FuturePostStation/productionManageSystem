@@ -3,9 +3,11 @@ import { IPage, IPageSort } from "./Interface"
 
 export class CommonApi<AddT, RetT = AddT, Query = IPageSort> {
   public urlPrefix: string
+  protected isInfo = true
 
-  constructor(urlPrefix: string) {
+  constructor(urlPrefix: string, isInfo = true) {
     this.urlPrefix = urlPrefix
+    this.isInfo = isInfo
   }
 
   public add(data: AddT) {
@@ -22,7 +24,10 @@ export class CommonApi<AddT, RetT = AddT, Query = IPageSort> {
 
   public async details(id: string) {
     try {
-      const res = await request<IResponse<RetT>>({ url: `${this.urlPrefix}Info/${id}`, method: "get", params: { id } })
+      const res = await request<IResponse<RetT>>({
+        url: `${this.urlPrefix}${this.isInfo ? "Info" : ""}/${id}`,
+        method: "get"
+      })
       return res.data
     } catch (error) {
       throw error

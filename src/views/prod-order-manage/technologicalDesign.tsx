@@ -66,10 +66,10 @@ export default new (class TechnologicalDesign extends PageBase {
 
   private tableAction(scope: ElRow<ITechnologicalDesignRes>) {
     return [
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "look")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.processDesignId, "look")}>
         详情
       </el-button>,
-      <el-button type="primary" link onClick={() => this.toDetails(scope.row.produceOrderId, "edit")}>
+      <el-button type="primary" link onClick={() => this.toDetails(scope.row.processDesignId, "edit")}>
         设计
       </el-button>
     ]

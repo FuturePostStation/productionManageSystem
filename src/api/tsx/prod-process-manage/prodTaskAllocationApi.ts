@@ -21,5 +21,5 @@ export interface IProdTaskAllocationAdd {
   fieldCode: string
 }
 export interface IProdTaskAllocationRes extends IProdTaskAllocationAdd {
-  id: number
+  produceOrderId: string
 }
