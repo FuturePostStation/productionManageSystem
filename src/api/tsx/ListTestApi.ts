@@ -1,14 +1,8 @@
-/*
- * @Author: tzx_sujie 1354146900@qq.com
- * @Date: 2023-05-18 18:26:34
- * @LastEditors: tzx_sujie 1354146900@qq.com
- * @LastEditTime: 2023-06-09 21:45:33
- */
 /**
  * Author: 从前慢 330109371@qq.com
  * Date: 2023-05-16 17:08:26
- * LastEditors: 从前慢 330109371@qq.com
- * LastEditTime: 2023-05-17 10:02:51
+ * LastEditors: pwl330109371 330109371@qq.com
+ * LastEditTime: 2023-06-17 22:34:39
  */
 import { IPageQuery } from "./Interface"
 import { CommonApi } from "./CommonApi"
