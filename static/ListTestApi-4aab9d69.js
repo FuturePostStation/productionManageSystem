@@ -1,0 +1,1 @@
+import{C as s}from"./PageBase-a3e7a0c4.js";class e extends s{constructor(){super("/demo")}async page(){return{msg:"",stat:1,data:{records:1,total:1,rows:[{fieldName:"asds",fieldCode:"sfsd",id:1},{fieldName:"asds2112",fieldCode:"sfsasdd",id:2}]}}}}export{e as T};

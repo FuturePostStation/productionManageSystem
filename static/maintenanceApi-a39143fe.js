@@ -1,0 +1,1 @@
+import{an as a}from"./index-ab1010d4.js";import{C as s}from"./PageBase-a3e7a0c4.js";class r extends s{constructor(){super("/api/sale/v1/saleOrder")}async details(s){try{return(await a({url:`/api/sale/v1/sysOrderInfo/${s}`,method:"get",params:{id:s}})).data}catch(r){throw r}}}export{r as M};

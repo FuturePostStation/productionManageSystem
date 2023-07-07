@@ -1,1 +1,0 @@
-import{C as s}from"./CommonApi-d58a699d.js";class d extends s{constructor(){super("/demo")}async page(){return{msg:"",stat:1,data:{records:1,total:1,rows:[{fieldName:"asds",fieldCode:"sfsd",id:1},{fieldName:"asds2112",fieldCode:"sfsasdd",id:2}]}}}}export{d as T};

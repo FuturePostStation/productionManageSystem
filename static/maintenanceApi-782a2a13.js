@@ -1,1 +1,0 @@
-import{an as a}from"./index-1707257e.js";import{C as s}from"./CommonApi-d58a699d.js";class r extends s{constructor(){super("/api/sale/v1/sysSaleOrder")}async details(s){try{return(await a({url:`/api/sale/v1/sysOrderInfo/${s}`,method:"get",params:{id:s}})).data}catch(r){throw r}}}export{r as M};
