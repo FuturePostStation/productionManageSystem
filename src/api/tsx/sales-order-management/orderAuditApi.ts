@@ -3,7 +3,7 @@ import { IPageQuery } from "../Interface"
 
 export default class OrderAuditApi extends CommonApi<IOrderAuditAdd, IOrderAuditRes, IOrderAuditQuery> {
   constructor() {
-    super("/api/sale/v1/sysSaleAudit")
+    super("/api/sale/v1/saleAudit")
   }
 }
 

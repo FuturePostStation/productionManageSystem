@@ -34,4 +34,6 @@ export interface ITechnologicalDesignRes extends ITechnologicalDesignAdd {
   status: number
   updateTime: string
   updateUser: string
+
+  pdfList: AnyArray
 }

@@ -4,7 +4,7 @@ import { IPageQuery } from "../Interface"
 
 export default class MaintenanceApi extends CommonApi<IMaintenanceAdd, IMaintenanceRes, IMaintenanceQuery> {
   constructor() {
-    super("/api/sale/v1/sysSaleOrder")
+    super("/api/sale/v1/saleOrder")
   }
 
   public async details(id: string) {
